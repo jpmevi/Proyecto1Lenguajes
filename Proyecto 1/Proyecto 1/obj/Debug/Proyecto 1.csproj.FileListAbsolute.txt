@@ -1,0 +1,9 @@
+C:\Users\MAX11\Documents\Proyecto #1 Lenguajes\Proyecto1Lenguajes\Proyecto 1\Proyecto 1\bin\Debug\Proyecto 1.exe.config
+C:\Users\MAX11\Documents\Proyecto #1 Lenguajes\Proyecto1Lenguajes\Proyecto 1\Proyecto 1\bin\Debug\Proyecto 1.exe
+C:\Users\MAX11\Documents\Proyecto #1 Lenguajes\Proyecto1Lenguajes\Proyecto 1\Proyecto 1\bin\Debug\Proyecto 1.pdb
+C:\Users\MAX11\Documents\Proyecto #1 Lenguajes\Proyecto1Lenguajes\Proyecto 1\Proyecto 1\obj\Debug\Proyecto 1.csprojResolveAssemblyReference.cache
+C:\Users\MAX11\Documents\Proyecto #1 Lenguajes\Proyecto1Lenguajes\Proyecto 1\Proyecto 1\obj\Debug\Proyecto_1.Form1.resources
+C:\Users\MAX11\Documents\Proyecto #1 Lenguajes\Proyecto1Lenguajes\Proyecto 1\Proyecto 1\obj\Debug\Proyecto_1.Properties.Resources.resources
+C:\Users\MAX11\Documents\Proyecto #1 Lenguajes\Proyecto1Lenguajes\Proyecto 1\Proyecto 1\obj\Debug\Proyecto 1.csproj.GenerateResource.Cache
+C:\Users\MAX11\Documents\Proyecto #1 Lenguajes\Proyecto1Lenguajes\Proyecto 1\Proyecto 1\obj\Debug\Proyecto 1.exe
+C:\Users\MAX11\Documents\Proyecto #1 Lenguajes\Proyecto1Lenguajes\Proyecto 1\Proyecto 1\obj\Debug\Proyecto 1.pdb
