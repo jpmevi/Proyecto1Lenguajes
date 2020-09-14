@@ -13,6 +13,7 @@ namespace Proyecto_1
     public partial class Form1 : Form
     {
         Archivos archivo = new Archivos();
+        GeneradorTokens tokensclase = new GeneradorTokens();
         public Form1()
         {
             InitializeComponent();
@@ -62,6 +63,17 @@ namespace Proyecto_1
             archivo.archivonuevo(saveFileDialog1, richTextBox1);
             label1.Text = archivo.getnombre();
             richTextBox1.Text = "";
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            tokensclase.separarTokens(richTextBox1.Text);
+            string[] tokens = tokensclase.gettokens();
+            int tokenslenght = tokens.Length;
+            for (int i = 0; i < tokens.Length; i++)
+            {
+                richTextBox2.Text += tokens[i]+ Environment.NewLine;
+            }
         }
     }
 }
