@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,6 +15,7 @@ namespace Proyecto_1
     {
         Archivos archivo = new Archivos();
         GeneradorTokens tokensclase = new GeneradorTokens();
+        Token tokens ;
         public Form1()
         {
             InitializeComponent();
@@ -67,12 +69,14 @@ namespace Proyecto_1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            
+
             tokensclase.separarTokens(richTextBox1.Text);
-            string[] tokens = tokensclase.gettokens();
-            int tokenslenght = tokens.Length;
-            for (int i = 0; i < tokens.Length; i++)
+            ArrayList listatokens = tokensclase.getTokens();
+            for (int i = 0; i < listatokens.Count; i++)
             {
-                richTextBox2.Text += tokens[i]+ Environment.NewLine;
+                Token tokenizer = (Token)listatokens[i];
+                MessageBox.Show(i + ") " + tokenizer.getToken() + " " + tokenizer.getTipo());
             }
         }
     }
