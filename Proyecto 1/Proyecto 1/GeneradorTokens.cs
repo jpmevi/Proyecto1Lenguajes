@@ -10,8 +10,7 @@ namespace Proyecto_1
 {
     class GeneradorTokens
     {
-        Token tokenObjeto;
-        private int contador = 0;
+
         private int actualEstado = 0;
         private ArrayList listaTokens = new ArrayList();
 
@@ -527,6 +526,11 @@ namespace Proyecto_1
                             switch (caracter)
                             {
                                 case ' ':
+                                case '\r':
+                                case '\t':
+                                case '\n':
+                                case '\b':
+                                case '\f':
                                 case '+':
                                 case '-':
                                 case '*':
@@ -944,6 +948,7 @@ namespace Proyecto_1
                     //Estado de aceptacion que recibe todos los errores en el texto
                     case 62:
                         {
+
                             switch (caracter)
                             {
                                 case '\n':
@@ -952,49 +957,31 @@ namespace Proyecto_1
                                 case '\t':
                                 case '\b':
                                 case '\f':
-
                                     insertarToken(concatToken, getActualEstado());
                                     concatToken = "";
                                     setActualEstado(0);
                                     break;
                                 case '+':
-                                    insertarToken(concatToken, getActualEstado());
-                                    concatToken = "";
-                                    concatToken += caracter;
-                                    setActualEstado(24);
-                                    break;
                                 case '-':
-                                    insertarToken(concatToken, getActualEstado());
-                                    concatToken = "";
-                                    concatToken += caracter;
-                                    setActualEstado(4);
-                                    break;
+                                case '*':
+                                case '/':
+                                case '!':
+                                case '>':
+                                case '<':
+                                case '=':
+                                case '|':
+                                case '&':
+                                case '(':
+                                case ')':
+                                case ';':
                                 case '"':
                                     insertarToken(concatToken, getActualEstado());
                                     concatToken = "";
-                                    concatToken += caracter;
-                                    setActualEstado(6);
-                                    break;
-                                case '*':
-                                    insertarToken(concatToken, getActualEstado());
-                                    concatToken = "";
-                                    concatToken += caracter;
-                                    setActualEstado(28);
-                                    break;
-                                case '/':
-                                    insertarToken(concatToken, getActualEstado());
-                                    concatToken = "";
-                                    concatToken += caracter;
-                                    setActualEstado(77);
-                                    break;
-                                case '&':
-                                    insertarToken(concatToken, getActualEstado());
-                                    concatToken = "";
-                                    concatToken += caracter;
-                                    setActualEstado(26);
+                                    i = i - 1;
+                                    setActualEstado(0);
                                     break;
                                 default:
-                                    concatToken += caracter;
+                                    concatToken+= caracter;
                                     break;
                             }
                             break;

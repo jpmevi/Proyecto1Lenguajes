@@ -15,7 +15,6 @@ namespace Proyecto_1
     {
         Archivos archivo = new Archivos();
         GeneradorTokens tokensclase = new GeneradorTokens();
-        Token tokens;
         public Form1()
         {
             InitializeComponent();
@@ -45,14 +44,17 @@ namespace Proyecto_1
         private void abrirToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             string texto = archivo.leerArchivo(openFileDialog1);
+            richTextBox1.SelectionColor = Color.White;
             richTextBox1.Text = texto;
-            label1.Text = archivo.getnombre();
+            label5.Text = archivo.getnombre();
+            richTextBox1.SelectionColor = Color.White;
+            
         }
 
         private void guardarComoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             archivo.guardarComo(saveFileDialog1, richTextBox1.Text);
-            label1.Text = archivo.getnombre();
+            label5.Text = archivo.getnombre();
         }
 
         private void guardarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -63,7 +65,7 @@ namespace Proyecto_1
         private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             archivo.archivonuevo(saveFileDialog1, richTextBox1);
-            label1.Text = archivo.getnombre();
+            label5.Text = archivo.getnombre();
             richTextBox1.Text = "";
         }
 
@@ -169,6 +171,7 @@ namespace Proyecto_1
             int column = index - firstChar;
             label3.Text = Convert.ToString("Linea: "+(line+1));
             label4.Text = Convert.ToString("Columna: " + column);
+            richTextBox1.SelectionColor = Color.White;
         }
 
         private void erroresToolStripMenuItem_Click(object sender, EventArgs e)
@@ -180,6 +183,34 @@ namespace Proyecto_1
                 MessageBox.Show("No hay ningun error para exportar");
             }
             
+        }
+
+        private void richTextBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            int index = richTextBox1.SelectionStart;
+            int line = richTextBox1.GetLineFromCharIndex(index);
+
+            int firstChar = richTextBox1.GetFirstCharIndexFromLine(line);
+            int column = index - firstChar;
+            label3.Text = Convert.ToString("Linea: " + (line + 1));
+            label4.Text = Convert.ToString("Columna: " + column);
+            richTextBox1.SelectionColor = Color.White;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            archivo.guardar(richTextBox1);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Clear();
+            richTextBox2.Clear();
+        }
+
+        private void richTextBox1_Leave(object sender, EventArgs e)
+        {
+            richTextBox1.SelectionColor = Color.White;
         }
     }
 }
