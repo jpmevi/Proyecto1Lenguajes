@@ -143,6 +143,9 @@ namespace Proyecto_1
                         richTextBox1.SelectionColor = Color.Yellow;
                         richTextBox1.AppendText(tokenizer.getToken());
                         richTextBox1.AppendText(" ");
+                        richTextBox2.SelectionColor = Color.Yellow;
+                        richTextBox2.AppendText(tokenizer.getToken());
+                        richTextBox2.AppendText(Environment.NewLine);
                         }
                         
                         break;
