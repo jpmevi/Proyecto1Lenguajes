@@ -44,8 +44,9 @@ namespace Proyecto_1
         private void abrirToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             string texto = archivo.leerArchivo(openFileDialog1);
+            richTextBox1.Clear();
             richTextBox1.SelectionColor = Color.White;
-            richTextBox1.Text = texto;
+            richTextBox1.AppendText(texto);
             label5.Text = archivo.getnombre();
             richTextBox1.SelectionColor = Color.White;
             
