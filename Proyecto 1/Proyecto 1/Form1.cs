@@ -73,6 +73,7 @@ namespace Proyecto_1
             tokensclase.separarTokens(richTextBox1.Text);
             ArrayList listatokens = tokensclase.getTokens();
             richTextBox1.Clear();
+            richTextBox2.Clear();
             for (int i = 0; i < listatokens.Count; i++)
             {
                 Token tokenizer = (Token)listatokens[i];
@@ -155,6 +156,28 @@ namespace Proyecto_1
                 }
                 richTextBox1.SelectionColor = Color.White;
                 
+            }
+            
+        }
+
+        private void richTextBox1_MouseClick(object sender, MouseEventArgs e)
+        {
+            int index = richTextBox1.SelectionStart;
+            int line = richTextBox1.GetLineFromCharIndex(index);
+
+            int firstChar = richTextBox1.GetFirstCharIndexFromLine(line);
+            int column = index - firstChar;
+            label3.Text = Convert.ToString("Linea: "+(line+1));
+            label4.Text = Convert.ToString("Columna: " + column);
+        }
+
+        private void erroresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (richTextBox2.Text.Length>0)
+            {
+                archivo.guardarComo(saveFileDialog1, richTextBox2.Text);
+            }else{
+                MessageBox.Show("No hay ningun error para exportar");
             }
             
         }
