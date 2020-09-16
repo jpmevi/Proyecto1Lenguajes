@@ -150,7 +150,8 @@ namespace Proyecto_1
                         richTextBox1.AppendText(Environment.NewLine);
                         break;
                 }
-                //MessageBox.Show(i + ") " + tokenizer.getToken() + " " + tokenizer.getTipo());
+                richTextBox1.SelectionColor = Color.White;
+                
             }
             
         }
