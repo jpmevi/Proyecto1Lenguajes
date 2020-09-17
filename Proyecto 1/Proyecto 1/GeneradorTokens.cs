@@ -987,6 +987,7 @@ namespace Proyecto_1
                             break;
                         }
                 }
+                //Comparamos si viene un espacio y si es un comentario para que se guarde todo el texto
                 if (caracter.Equals('\n') && (!enterComillas) && (!comentarioCompleto) )
                 {
                     insertarToken(concatToken, 63);
@@ -1000,16 +1001,28 @@ namespace Proyecto_1
 
         }
 
-
+        /// <summary>
+        /// Metodo para establecer el estado actual
+        /// </summary>
+        /// <param name="estado"></param>
         public void setActualEstado(int estado)
         {
             this.actualEstado = estado;
         }
+        /// <summary>
+        /// Metodo para obtener el estado actual
+        /// </summary>
+        /// <returns></returns>
         public int getActualEstado()
         {
             return this.actualEstado;
         }
 
+        /// <summary>
+        /// Metodo para Insertar nuestros tokens mandando una palabra y el numero del estado
+        /// </summary>
+        /// <param name="palabra"></param>
+        /// <param name="estado"></param>
         public void insertarToken(string palabra, int estado)
         {
             Token tokenNuevo;
@@ -1123,11 +1136,17 @@ namespace Proyecto_1
                     break;
             }
         }
-
+        /// <summary>
+        /// Metodo para obtener nuestro token
+        /// </summary>
+        /// <returns></returns>
         public ArrayList getTokens()
         {
             return listaTokens;
         }
+        /// <summary>
+        /// Metodo para vaciar el arraylist
+        /// </summary>
         public void vaciarLista()
         {
             listaTokens.Clear();

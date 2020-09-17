@@ -13,6 +13,7 @@ namespace Proyecto_1
 {
     public partial class Form1 : Form
     {
+        //Generamos nuestros objetos
         Archivos archivo = new Archivos();
         GeneradorTokens tokensclase = new GeneradorTokens();
         public Form1()
@@ -40,7 +41,11 @@ namespace Proyecto_1
         {
 
         }
-
+        /// <summary>
+        /// Llamamos nuestro metodo para abir archivo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void abrirToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             string texto = archivo.leerArchivo(openFileDialog1);
@@ -52,17 +57,30 @@ namespace Proyecto_1
             
         }
 
+        /// <summary>
+        /// Llamamos nuestro metodo para guardar como
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void guardarComoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             archivo.guardarComo(saveFileDialog1, richTextBox1.Text);
             label5.Text = archivo.getnombre();
         }
-
+        /// <summary>
+        /// Llamamos nuestro metodo para guardar
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void guardarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             archivo.guardar(richTextBox1);
         }
-
+        /// <summary>
+        /// Llamamos nuestro metodo para crear nuevo archivo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             archivo.archivonuevo(saveFileDialog1, richTextBox1);
@@ -70,6 +88,11 @@ namespace Proyecto_1
             richTextBox1.Text = "";
         }
 
+        /// <summary>
+        /// Obtenemos lo que escribio el usuario y lo comparamos con los tokens para que los vaya pintando e imprimiendo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
             tokensclase.vaciarLista();
@@ -163,6 +186,11 @@ namespace Proyecto_1
             
         }
 
+        /// <summary>
+        /// Hacemos que cuente la linea y la columna cada vez que presione el mouse
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void richTextBox1_MouseClick(object sender, MouseEventArgs e)
         {
             int index = richTextBox1.SelectionStart;
@@ -175,6 +203,11 @@ namespace Proyecto_1
             richTextBox1.SelectionColor = Color.White;
         }
 
+        /// <summary>
+        /// Llamamos el metodo de guardar como para que exporte los errores
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void erroresToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (richTextBox2.Text.Length>0)
@@ -186,6 +219,11 @@ namespace Proyecto_1
             
         }
 
+        /// <summary>
+        /// Cada vez que presiona una tecla va cambiando la fila y columna 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void richTextBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             int index = richTextBox1.SelectionStart;
@@ -198,17 +236,32 @@ namespace Proyecto_1
             richTextBox1.SelectionColor = Color.White;
         }
 
+        /// <summary>
+        /// Guardamos el archivo actual
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button3_Click(object sender, EventArgs e)
         {
             archivo.guardar(richTextBox1);
         }
 
+        /// <summary>
+        /// Limpiamos los cuadros de texto
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
             richTextBox1.Clear();
             richTextBox2.Clear();
         }
 
+        /// <summary>
+        /// Cambiamos el color al default cuando salga del cuadro de texto
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void richTextBox1_Leave(object sender, EventArgs e)
         {
             richTextBox1.SelectionColor = Color.White;
