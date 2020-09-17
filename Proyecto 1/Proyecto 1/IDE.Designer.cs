@@ -1,6 +1,6 @@
 ﻿namespace Proyecto_1
 {
-    partial class Form1
+    partial class IDE
     {
         /// <summary>
         /// Variable del diseñador requerida.
@@ -292,7 +292,7 @@
             this.label5.TabIndex = 12;
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // Form1
+            // IDE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -309,7 +309,7 @@
             this.Controls.Add(this.panel2);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.Name = "IDE";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "IDE";
             this.Load += new System.EventHandler(this.Form1_Load);

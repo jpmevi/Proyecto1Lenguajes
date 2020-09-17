@@ -222,8 +222,10 @@ namespace Proyecto_1
                                     setActualEstado(3);
                                     break;
                                 default:
-                                    concatToken += caracter;
-                                    setActualEstado(62);
+                                    insertarToken(concatToken, getActualEstado());
+                                    concatToken = "";
+                                    i = i - 1;
+                                    setActualEstado(0);
                                     break;
                             }
                             break;
