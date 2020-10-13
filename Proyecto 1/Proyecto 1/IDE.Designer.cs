@@ -50,6 +50,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
+            this.eliminarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -113,7 +114,8 @@
             this.abrirToolStripMenuItem1,
             this.guardarComoToolStripMenuItem,
             this.guardarToolStripMenuItem,
-            this.nuevoToolStripMenuItem});
+            this.nuevoToolStripMenuItem,
+            this.eliminarToolStripMenuItem});
             this.abrirToolStripMenuItem.Image = global::Proyecto_1.Properties.Resources.pngwing_com;
             this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
             this.abrirToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
@@ -292,6 +294,14 @@
             this.label5.TabIndex = 12;
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // eliminarToolStripMenuItem
+            // 
+            this.eliminarToolStripMenuItem.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.eliminarToolStripMenuItem.Name = "eliminarToolStripMenuItem";
+            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.eliminarToolStripMenuItem.Text = "Eliminar";
+            this.eliminarToolStripMenuItem.Click += new System.EventHandler(this.eliminarToolStripMenuItem_Click);
+            // 
             // IDE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -346,6 +356,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ToolStripMenuItem eliminarToolStripMenuItem;
     }
 }
 

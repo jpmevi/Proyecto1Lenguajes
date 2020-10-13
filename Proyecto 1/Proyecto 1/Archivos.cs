@@ -21,7 +21,7 @@ namespace Proyecto_1
         {
 
             String fileContent = string.Empty;
-            String path = string.Empty;
+            String path = "";
             //Filtro del filedialog
             openFile.Filter = "gt files (*.gt)|*.gt";
             //If para abrir el archivo
@@ -180,6 +180,48 @@ namespace Proyecto_1
                 MessageBox.Show("Error al crear archivo");
             }
         }
+        public void eliminarArchivo()
+        {
+            try
+            {
+                File.Delete(getpath());
+                if (File.Exists(getpath()))
+                {
+                    Console.WriteLine("El archivo sigue existiendo.");
+                }
+                else
+                {
+                    MessageBox.Show("Se ha borrado exitosamente");
+                    setpathActual("");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Error");
+            }
+        }
+
+        public void verificarEliminar()
+        {
+            if (getpath()==null)
+            {
+                MessageBox.Show("Este proyecto aun no ha sido guardado");
+            }
+            else
+            {
+                DialogResult dialogResult = MessageBox.Show("Desea eliminar el archivo actual?", "Advertencia", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    eliminarArchivo();
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+
+                }
+            }
+
+        }
+
 
         //Metodos Get y set
         public String getpath()

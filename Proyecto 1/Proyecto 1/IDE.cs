@@ -96,7 +96,7 @@ namespace Proyecto_1
         private void button1_Click(object sender, EventArgs e)
         {
             tokensclase.vaciarLista();
-            tokensclase.separarTokens(richTextBox1.Text);
+            tokensclase.separarTokens(richTextBox1);
             ArrayList listatokens = tokensclase.getTokens();
             richTextBox1.Clear();
             richTextBox2.Clear();
@@ -106,10 +106,11 @@ namespace Proyecto_1
                 switch (tokenizer.getTipo())
                 {
                     case "Entero":
-                        richTextBox1.SelectionColor = Color.Orchid;
-                        richTextBox1.AppendText(tokenizer.getToken());
-                        richTextBox1.AppendText(" ");
+                            richTextBox1.SelectionColor = Color.Orchid;
+                            richTextBox1.AppendText(tokenizer.getToken());
+                            richTextBox1.AppendText(" ");
                         break;
+
                     case "Decimal":
                         richTextBox1.SelectionColor = Color.LightBlue;
                         richTextBox1.AppendText(tokenizer.getToken());
@@ -146,7 +147,7 @@ namespace Proyecto_1
                         richTextBox1.AppendText(" ");
                         break;
                     case "Caracter":
-                        richTextBox1.SelectionColor = Color.Sienna;
+                        richTextBox1.SelectionColor = Color.Peru;
                         richTextBox1.AppendText(tokenizer.getToken());
                         richTextBox1.AppendText(" ");
                         break;
@@ -163,15 +164,45 @@ namespace Proyecto_1
                     case "Error":
                         if (tokenizer.getToken().Equals("SI") || tokenizer.getToken().Equals("SINO") || tokenizer.getToken().Equals("SINO_SI") || tokenizer.getToken().Equals("MIENTRAS") || tokenizer.getToken().Equals("HACER") || tokenizer.getToken().Equals("DESDE") || tokenizer.getToken().Equals("HASTA") || tokenizer.getToken().Equals("INCREMENTO"))
                         {
-                            richTextBox1.SelectionColor = Color.Green;
+                            richTextBox1.SelectionColor = Color.Lime;
                             richTextBox1.AppendText(tokenizer.getToken());
                             richTextBox1.AppendText(" ");
-                        }else{
+                        }else if (tokenizer.getToken().Equals("entero"))
+                        {
+                            richTextBox1.SelectionColor = Color.Orchid;
+                            richTextBox1.AppendText(tokenizer.getToken());
+                            richTextBox1.AppendText(" ");
+                        }
+                        else if (tokenizer.getToken().Equals("decimal"))
+                        {
+                            richTextBox1.SelectionColor = Color.LightBlue;
+                            richTextBox1.AppendText(tokenizer.getToken());
+                            richTextBox1.AppendText(" ");
+                        }
+                        else if (tokenizer.getToken().Equals("cadena"))
+                        {
+                            richTextBox1.SelectionColor = Color.DarkGray;
+                            richTextBox1.AppendText(tokenizer.getToken());
+                            richTextBox1.AppendText(" ");
+                        }
+                        else if (tokenizer.getToken().Equals("booleano"))
+                        {
+                            richTextBox1.SelectionColor = Color.Orange;
+                            richTextBox1.AppendText(tokenizer.getToken());
+                            richTextBox1.AppendText(" ");
+                        }
+                        else if (tokenizer.getToken().Equals("caracter"))
+                        {
+                            richTextBox1.SelectionColor = Color.Peru;
+                            richTextBox1.AppendText(tokenizer.getToken());
+                            richTextBox1.AppendText(" ");
+                        }
+                        else{
                         richTextBox1.SelectionColor = Color.Yellow;
                         richTextBox1.AppendText(tokenizer.getToken());
                         richTextBox1.AppendText(" ");
                         richTextBox2.SelectionColor = Color.Yellow;
-                        richTextBox2.AppendText(tokenizer.getToken());
+                        richTextBox2.AppendText(tokenizer.getToken() + " En la linea: "+tokenizer.getFila()+" y columna: "+tokenizer.getColumna());
                         richTextBox2.AppendText(Environment.NewLine);
                         }
                         
@@ -265,6 +296,14 @@ namespace Proyecto_1
         private void richTextBox1_Leave(object sender, EventArgs e)
         {
             richTextBox1.SelectionColor = Color.White;
+        }
+
+        private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            archivo.verificarEliminar();
+            label5.Text ="";
+            richTextBox1.Text = "";
+            richTextBox2.Text = "";
         }
     }
 }

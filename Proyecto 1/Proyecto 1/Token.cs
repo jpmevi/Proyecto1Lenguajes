@@ -13,6 +13,8 @@ namespace Proyecto_1
         //Atributos de nuestro objeto
         private string token;
         private string color;
+        private int fila;
+        private int columna;
         private string valor;
         
 
@@ -26,6 +28,15 @@ namespace Proyecto_1
         {
             this.token = token;
             this.color = color;
+            this.valor = valor;
+        }
+
+        public Token(string token, int fila, int columna, string valor)
+        {
+            this.token = token;
+            this.columna = columna;
+            this.fila = fila;
+            this.columna = columna;
             this.valor = valor;
         }
 
@@ -45,6 +56,14 @@ namespace Proyecto_1
         public string getToken()
         {
             return this.token;
+        }
+        public int getFila()
+        {
+            return this.fila;
+        }
+        public int getColumna()
+        {
+            return this.columna;
         }
     }
 }

@@ -10,22 +10,31 @@ namespace Proyecto_1
 {
     class GeneradorTokens
     {
-
+        private int contadorfila = 1;
+        private int contadorcolumna = 0;
+        private int columnatemp = 0;
         private int actualEstado = 0;
         private ArrayList listaTokens = new ArrayList();
 
-        public void separarTokens(String texto)
+        public void separarTokens(RichTextBox textorich)
         {
-            texto = texto + " ";
+
+
+
+            string texto = textorich.Text + " ";
             char caracter;
             string concatToken = "";
             bool enterComillas = false;
             bool comentario = false;
             bool comentarioCompleto = false;
             bool asterisco = false;
+            contadorfila = 1;
+             contadorcolumna = 0;
+             columnatemp = 0;
             for (int i = 0; i < texto.Length; i++)
             {
-
+                columnatemp++;
+                contadorcolumna++;
                 caracter = texto[i];
                 switch (actualEstado)
                 {
@@ -87,7 +96,7 @@ namespace Proyecto_1
                                     setActualEstado(26);
                                     break;
                                 case '|':
-                                     concatToken += caracter;
+                                    concatToken += caracter;
                                     setActualEstado(36);
                                     break;
                                 case '<':
@@ -140,7 +149,7 @@ namespace Proyecto_1
                                     concatToken = "";
                                     setActualEstado(0);
                                     break;
-                               
+
                                 case '0':
                                 case '1':
                                 case '2':
@@ -159,11 +168,28 @@ namespace Proyecto_1
                                     concatToken += caracter;
                                     setActualEstado(2);
                                     break;
-                                default:
-                                     insertarToken(concatToken, getActualEstado());
+                                case '+':
+                                case '-':
+                                case '*':
+                                case '/':
+                                case '!':
+                                case '>':
+                                case '<':
+                                case '=':
+                                case '|':
+                                case '&':
+                                case '(':
+                                case ')':
+                                case ';':
+                                case '"':
+                                    insertarToken(concatToken, getActualEstado());
                                     concatToken = "";
                                     i = i - 1;
                                     setActualEstado(0);
+                                    break;
+                                default:
+                                    concatToken += caracter;
+                                    setActualEstado(62);
                                     break;
                             }
                             break;
@@ -222,10 +248,8 @@ namespace Proyecto_1
                                     setActualEstado(3);
                                     break;
                                 default:
-                                    insertarToken(concatToken, getActualEstado());
-                                    concatToken = "";
-                                    i = i - 1;
-                                    setActualEstado(0);
+                                    concatToken += caracter;
+                                    setActualEstado(62);
                                     break;
                             }
                             break;
@@ -263,7 +287,7 @@ namespace Proyecto_1
                                     concatToken = "";
                                     setActualEstado(0);
                                     break;
-                               
+
                                 default:
                                     insertarToken(concatToken, getActualEstado());
                                     concatToken = "";
@@ -374,7 +398,7 @@ namespace Proyecto_1
                                     setActualEstado(13);
                                     break;
                                 default:
-                                   setActualEstado(62);
+                                    setActualEstado(62);
                                     i = i - 1;
                                     break;
                             }
@@ -390,7 +414,7 @@ namespace Proyecto_1
                                     setActualEstado(14);
                                     break;
                                 default:
-                                   setActualEstado(62);
+                                    setActualEstado(62);
                                     i = i - 1;
                                     break;
                             }
@@ -435,9 +459,7 @@ namespace Proyecto_1
                             {
                                 case 'o':
                                     concatToken += caracter;
-                                    insertarToken(concatToken, getActualEstado());
-                                    concatToken = "";
-                                    setActualEstado(0);
+                                    setActualEstado(78);
                                     break;
                                 default:
                                     setActualEstado(62);
@@ -511,9 +533,7 @@ namespace Proyecto_1
                             {
                                 case 'o':
                                     concatToken += caracter;
-                                    insertarToken(concatToken, getActualEstado());
-                                    concatToken = "";
-                                    setActualEstado(0);
+                                    setActualEstado(78);
                                     break;
                                 default:
                                     setActualEstado(62);
@@ -547,7 +567,7 @@ namespace Proyecto_1
                                 case ')':
                                 case ';':
                                 case '"':
-                                   insertarToken(concatToken, getActualEstado());
+                                    insertarToken(concatToken, getActualEstado());
                                     concatToken = "";
                                     i = i - 1;
                                     setActualEstado(0);
@@ -558,7 +578,7 @@ namespace Proyecto_1
                                     break;
 
 
-                               
+
                             }
                             break;
                         }
@@ -580,7 +600,7 @@ namespace Proyecto_1
                                     setActualEstado(0);
                                     break;
                                 default:
-                                   insertarToken(concatToken, getActualEstado());
+                                    insertarToken(concatToken, getActualEstado());
                                     concatToken = "";
                                     i = i - 1;
                                     setActualEstado(0);
@@ -590,7 +610,7 @@ namespace Proyecto_1
                             break;
 
                         }
-                        //Estado que recibe el & y acepta &&
+                    //Estado que recibe el & y acepta &&
                     case 26:
                         {
                             switch (caracter)
@@ -638,7 +658,7 @@ namespace Proyecto_1
                                     setActualEstado(0);
                                     break;
                                 default:
-                                   insertarToken(concatToken, getActualEstado());
+                                    insertarToken(concatToken, getActualEstado());
                                     concatToken = "";
                                     i = i - 1;
                                     setActualEstado(0);
@@ -687,14 +707,14 @@ namespace Proyecto_1
                                 case '\n':
                                 case '\b':
                                 case '\f':
-                                   insertarToken(concatToken, getActualEstado());
+                                    insertarToken(concatToken, getActualEstado());
                                     concatToken = "";
                                     i = i - 1;
                                     setActualEstado(0);
                                     break;
                                 case '=':
-                                     concatToken += caracter;
-                                    insertarToken(concatToken,30);
+                                    concatToken += caracter;
+                                    insertarToken(concatToken, 30);
                                     concatToken = "";
                                     setActualEstado(0);
                                     break;
@@ -861,15 +881,15 @@ namespace Proyecto_1
                                             concatToken += caracter;
                                             setActualEstado(77);
                                         }
-                                        
-                                    }
-                                   
 
-                                        
-                                        
+                                    }
+
+
+
+
                                     break;
                                 case '\n':
-                                    if (comentarioCompleto == false && comentario==false)
+                                    if (comentarioCompleto == false && comentario == false)
                                     {
                                         insertarToken(concatToken, getActualEstado());
                                         concatToken = "";
@@ -888,10 +908,10 @@ namespace Proyecto_1
                                         comentario = false;
                                         setActualEstado(0);
                                     }
-                                   
+
                                     break;
                                 case '/':
-                                    if (comentarioCompleto == true || comentario==true)
+                                    if (comentarioCompleto == true || comentario == true)
                                     {
                                         if (asterisco == true)
                                         {
@@ -913,7 +933,7 @@ namespace Proyecto_1
                                     }
                                     break;
                                 case '*':
-                                    if (comentarioCompleto == false && comentario==false && asterisco==false)
+                                    if (comentarioCompleto == false && comentario == false && asterisco == false)
                                     {
                                         concatToken += caracter;
                                         setActualEstado(77);
@@ -925,10 +945,10 @@ namespace Proyecto_1
                                         setActualEstado(77);
                                         asterisco = true;
                                     }
-                                   
+
                                     break;
                                 default:
-                                    if (comentario == false && comentarioCompleto==false)
+                                    if (comentario == false && comentarioCompleto == false)
                                     {
                                         insertarToken(concatToken, getActualEstado());
                                         concatToken = "";
@@ -947,8 +967,8 @@ namespace Proyecto_1
                             break;
 
                         }
-                    //Estado de aceptacion que recibe todos los errores en el texto
-                    case 62:
+                    //Estado para las palabras veradero y falso
+                    case 78:
                         {
 
                             switch (caracter)
@@ -959,6 +979,51 @@ namespace Proyecto_1
                                 case '\t':
                                 case '\b':
                                 case '\f':
+                                    insertarToken(concatToken, 20);
+                                    concatToken = "";
+                                    setActualEstado(0);
+                                    break;
+                                case '+':
+                                case '-':
+                                case '*':
+                                case '/':
+                                case '!':
+                                case '>':
+                                case '<':
+                                case '=':
+                                case '|':
+                                case '&':
+                                case '(':
+                                case ')':
+                                case ';':
+                                case '"':
+                                    insertarToken(concatToken, 20);
+                                    concatToken = "";
+                                    i = i - 1;
+                                    setActualEstado(0);
+                                    break;
+                                default:
+                                    concatToken += caracter;
+                                    setActualEstado(62);
+                                    break;
+                            }
+                            break;
+
+                        }
+                    //Estado de aceptacion que recibe todos los errores en el texto
+                    case 62:
+                        {
+
+                            switch (caracter)
+                            {
+
+                                case '\n':
+                                case ' ':
+                                case '\r':
+                                case '\t':
+                                case '\b':
+                                case '\f':
+
                                     insertarToken(concatToken, getActualEstado());
                                     concatToken = "";
                                     setActualEstado(0);
@@ -977,22 +1042,27 @@ namespace Proyecto_1
                                 case ')':
                                 case ';':
                                 case '"':
+
                                     insertarToken(concatToken, getActualEstado());
                                     concatToken = "";
                                     i = i - 1;
                                     setActualEstado(0);
                                     break;
                                 default:
-                                    concatToken+= caracter;
+                                    concatToken += caracter;
                                     break;
                             }
                             break;
                         }
                 }
+
                 //Comparamos si viene un espacio y si es un comentario para que se guarde todo el texto
-                if (caracter.Equals('\n') && (!enterComillas) && (!comentarioCompleto) )
+                if (caracter.Equals('\n') && (!enterComillas) && (!comentarioCompleto))
                 {
                     insertarToken(concatToken, 63);
+                    contadorfila++;
+                    columnatemp = 0;
+                    contadorcolumna = 0;
                 }
                 else
                 {
@@ -1027,6 +1097,7 @@ namespace Proyecto_1
         /// <param name="estado"></param>
         public void insertarToken(string palabra, int estado)
         {
+
             Token tokenNuevo;
             switch (estado)
             {
@@ -1129,7 +1200,7 @@ namespace Proyecto_1
                     listaTokens.Add(tokenNuevo);
                     break;
                 case 62:
-                    tokenNuevo = new Token(palabra, "Blanco", "Error");
+                    tokenNuevo = new Token(palabra, contadorfila, columnatemp - contadorcolumna, "Error");
                     listaTokens.Add(tokenNuevo);
                     break;
                 case 63:
@@ -1137,6 +1208,7 @@ namespace Proyecto_1
                     listaTokens.Add(tokenNuevo);
                     break;
             }
+            contadorcolumna = 0;
         }
         /// <summary>
         /// Metodo para obtener nuestro token
