@@ -161,52 +161,19 @@ namespace Proyecto_1
                         richTextBox1.AppendText(tokenizer.getToken());
                         richTextBox1.AppendText(" ");
                         break;
-                    case "Error":
-                        if (tokenizer.getToken().Equals("SI") || tokenizer.getToken().Equals("SINO") || tokenizer.getToken().Equals("SINO_SI") || tokenizer.getToken().Equals("MIENTRAS") || tokenizer.getToken().Equals("HACER") || tokenizer.getToken().Equals("DESDE") || tokenizer.getToken().Equals("HASTA") || tokenizer.getToken().Equals("INCREMENTO"))
-                        {
-                            richTextBox1.SelectionColor = Color.Lime;
-                            richTextBox1.AppendText(tokenizer.getToken());
-                            richTextBox1.AppendText(" ");
-                        }else if (tokenizer.getToken().Equals("entero"))
-                        {
-                            richTextBox1.SelectionColor = Color.Orchid;
-                            richTextBox1.AppendText(tokenizer.getToken());
-                            richTextBox1.AppendText(" ");
-                        }
-                        else if (tokenizer.getToken().Equals("decimal"))
-                        {
-                            richTextBox1.SelectionColor = Color.LightBlue;
-                            richTextBox1.AppendText(tokenizer.getToken());
-                            richTextBox1.AppendText(" ");
-                        }
-                        else if (tokenizer.getToken().Equals("cadena"))
-                        {
-                            richTextBox1.SelectionColor = Color.DarkGray;
-                            richTextBox1.AppendText(tokenizer.getToken());
-                            richTextBox1.AppendText(" ");
-                        }
-                        else if (tokenizer.getToken().Equals("booleano"))
-                        {
-                            richTextBox1.SelectionColor = Color.Orange;
-                            richTextBox1.AppendText(tokenizer.getToken());
-                            richTextBox1.AppendText(" ");
-                        }
-                        else if (tokenizer.getToken().Equals("caracter"))
-                        {
-                            richTextBox1.SelectionColor = Color.Peru;
-                            richTextBox1.AppendText(tokenizer.getToken());
-                            richTextBox1.AppendText(" ");
-                        }
-                        else{
+                    case "Error":                        
                         richTextBox1.SelectionColor = Color.Yellow;
                         richTextBox1.AppendText(tokenizer.getToken());
                         richTextBox1.AppendText(" ");
                         richTextBox2.SelectionColor = Color.Yellow;
                         richTextBox2.AppendText(tokenizer.getToken() + " En la linea: "+tokenizer.getFila()+" y columna: "+tokenizer.getColumna());
-                        richTextBox2.AppendText(Environment.NewLine);
-                        }
-                        
+                        richTextBox2.AppendText(Environment.NewLine);                        
                         break;
+                    case "Reservada":
+                         richTextBox1.SelectionColor = Color.Lime;
+                            richTextBox1.AppendText(tokenizer.getToken());
+                            richTextBox1.AppendText(" ");
+                            break;
                     case "Enter":
                         richTextBox1.AppendText(Environment.NewLine);
                         break;

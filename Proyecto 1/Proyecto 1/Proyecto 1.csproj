@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Archivos.cs" />
+    <Compile Include="Parserer.cs" />
     <Compile Include="IDE.cs">
       <SubType>Form</SubType>
     </Compile>

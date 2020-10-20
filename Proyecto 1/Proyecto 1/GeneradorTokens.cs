@@ -127,6 +127,10 @@ namespace Proyecto_1
                                     concatToken += caracter;
                                     setActualEstado(39);
                                     break;
+                                case '_':
+                                    concatToken += caracter;
+                                    setActualEstado(40);
+                                    break;
                                 default:
                                     concatToken += caracter;
                                     setActualEstado(23);
@@ -810,6 +814,54 @@ namespace Proyecto_1
                             break;
 
                         }
+                    //Estado de aceptacion que recibe un _
+                    case 40:
+                        {
+                            switch (caracter)
+                            {
+                                case ' ':
+                                case '\r':
+                                case '\t':
+                                case '\n':
+                                case '\b':
+                                case '\f':
+                                    insertarToken(concatToken, 62);
+                                    concatToken = "";
+                                    setActualEstado(0);
+                                    break;
+                                default:
+                                    concatToken += caracter;
+                                    setActualEstado(41);
+                                    break;
+
+                            }
+                            break;
+
+                        }
+                    //Estado de aceptacion que recibe lo siguiente de id
+                    case 41:
+                        {
+                            switch (caracter)
+                            {
+                                case ' ':
+                                case '\r':
+                                case '\t':
+                                case '\n':
+                                case '\b':
+                                case '\f':
+                                    insertarToken(concatToken, getActualEstado());
+                                    concatToken = "";
+                                    setActualEstado(0);
+                                    break;
+                                default:
+                                    concatToken += caracter;
+                                    setActualEstado(41);
+                                    break;
+
+                            }
+                            break;
+
+                        }
                     //Estado que recibe el | y acepta ||
                     case 36:
                         {
@@ -1200,11 +1252,48 @@ namespace Proyecto_1
                     listaTokens.Add(tokenNuevo);
                     break;
                 case 62:
-                    tokenNuevo = new Token(palabra, contadorfila, columnatemp - contadorcolumna, "Error");
-                    listaTokens.Add(tokenNuevo);
+                    if (palabra.Equals("SI") || palabra.Equals("SINO") || palabra.Equals("SINO_SI") || palabra.Equals("MIENTRAS") || palabra.Equals("HACER") || palabra.Equals("DESDE") || palabra.Equals("HASTA") || palabra.Equals("INCREMENTO") || palabra.Equals("PRINCIPAL") || palabra.Equals("leer") || palabra.Equals("imprimir"))
+                    {
+                        tokenNuevo = new Token(palabra, "Morado", "Reservada");
+                        listaTokens.Add(tokenNuevo);
+                    }
+                    else if (palabra.Equals("entero"))
+                    {
+                        tokenNuevo = new Token(palabra, "Morado", "Entero");
+                        listaTokens.Add(tokenNuevo);
+                    }
+                    else if (palabra.Equals("decimal"))
+                    {
+                        tokenNuevo = new Token(palabra, "Morado", "Decimal");
+                        listaTokens.Add(tokenNuevo);
+                    }
+                    else if (palabra.Equals("cadena"))
+                    {
+                        tokenNuevo = new Token(palabra, "Morado", "Cadena");
+                        listaTokens.Add(tokenNuevo);
+                    }
+                    else if (palabra.Equals("booleano"))
+                    {
+                        tokenNuevo = new Token(palabra, "Morado", "Booleano");
+                        listaTokens.Add(tokenNuevo);
+                    }
+                    else if (palabra.Equals("caracter"))
+                    {
+                        tokenNuevo = new Token(palabra, "Morado", "Caracter");
+                        listaTokens.Add(tokenNuevo);
+                    }
+                    else
+                    {
+                        tokenNuevo = new Token(palabra, contadorfila, columnatemp - contadorcolumna, "Error");
+                        listaTokens.Add(tokenNuevo);
+                    }
                     break;
                 case 63:
                     tokenNuevo = new Token(palabra, "Negro", "Enter");
+                    listaTokens.Add(tokenNuevo);
+                    break;
+                case 41:
+                    tokenNuevo = new Token(palabra, "Blanco", "ID");
                     listaTokens.Add(tokenNuevo);
                     break;
             }
