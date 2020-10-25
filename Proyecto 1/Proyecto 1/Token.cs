@@ -65,5 +65,10 @@ namespace Proyecto_1
         {
             return this.columna;
         }
+
+        public void setTipo(string tipo){
+            this.valor = tipo;
+        }
+
     }
 }

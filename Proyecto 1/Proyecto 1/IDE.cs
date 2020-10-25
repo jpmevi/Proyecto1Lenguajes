@@ -177,6 +177,11 @@ namespace Proyecto_1
                     case "Enter":
                         richTextBox1.AppendText(Environment.NewLine);
                         break;
+                    case "ID":
+                         richTextBox1.SelectionColor = Color.White;
+                            richTextBox1.AppendText(tokenizer.getToken());
+                            richTextBox1.AppendText(" ");
+                        break;
                 }
                 richTextBox1.SelectionColor = Color.White;
                 

@@ -15,6 +15,7 @@ namespace Proyecto_1
         private int columnatemp = 0;
         private int actualEstado = 0;
         private ArrayList listaTokens = new ArrayList();
+        private Parserer parserer;
 
         public void separarTokens(RichTextBox textorich)
         {
@@ -1155,7 +1156,16 @@ namespace Proyecto_1
             {
                 case 1:
                     tokenNuevo = new Token(palabra, "Morado", "Entero");
-                    listaTokens.Add(tokenNuevo);
+                    if (parserer.automataPila(tokenNuevo))
+                    {
+                        listaTokens.Add(tokenNuevo);
+                    }
+                    else
+                    {
+                        tokenNuevo.setTipo("Error");
+                        listaTokens.Add(tokenNuevo);
+                    }
+                    
                     break;
 
                 case 3:
@@ -1255,6 +1265,7 @@ namespace Proyecto_1
                     if (palabra.Equals("SI") || palabra.Equals("SINO") || palabra.Equals("SINO_SI") || palabra.Equals("MIENTRAS") || palabra.Equals("HACER") || palabra.Equals("DESDE") || palabra.Equals("HASTA") || palabra.Equals("INCREMENTO") || palabra.Equals("PRINCIPAL") || palabra.Equals("leer") || palabra.Equals("imprimir"))
                     {
                         tokenNuevo = new Token(palabra, "Morado", "Reservada");
+                        
                         listaTokens.Add(tokenNuevo);
                     }
                     else if (palabra.Equals("entero"))
@@ -1314,5 +1325,7 @@ namespace Proyecto_1
         {
             listaTokens.Clear();
         }
+
+
     }
 }
