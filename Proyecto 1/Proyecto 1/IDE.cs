@@ -95,6 +95,7 @@ namespace Proyecto_1
         /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
+            tokensclase = new GeneradorTokens();
             tokensclase.vaciarLista();
             tokensclase.separarTokens(richTextBox1);
             ArrayList listatokens = tokensclase.getTokens();
@@ -178,9 +179,19 @@ namespace Proyecto_1
                         richTextBox1.AppendText(Environment.NewLine);
                         break;
                     case "ID":
-                         richTextBox1.SelectionColor = Color.White;
+                         richTextBox1.SelectionColor = Color.YellowGreen;
                             richTextBox1.AppendText(tokenizer.getToken());
                             richTextBox1.AppendText(" ");
+                        break;
+                    case "Coma":
+                        richTextBox1.SelectionColor = Color.PaleGoldenrod;
+                        richTextBox1.AppendText(tokenizer.getToken());
+                        richTextBox1.AppendText(" ");
+                        break;
+                    case "Corchete":
+                        richTextBox1.SelectionColor = Color.PaleGoldenrod;
+                        richTextBox1.AppendText(tokenizer.getToken());
+                        richTextBox1.AppendText(" ");
                         break;
                 }
                 richTextBox1.SelectionColor = Color.White;

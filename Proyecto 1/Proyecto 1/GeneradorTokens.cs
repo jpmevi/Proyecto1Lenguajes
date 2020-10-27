@@ -15,7 +15,7 @@ namespace Proyecto_1
         private int columnatemp = 0;
         private int actualEstado = 0;
         private ArrayList listaTokens = new ArrayList();
-        private Parserer parserer;
+        private Parserer parserer = new Parserer();
 
         public void separarTokens(RichTextBox textorich)
         {
@@ -131,6 +131,24 @@ namespace Proyecto_1
                                 case '_':
                                     concatToken += caracter;
                                     setActualEstado(40);
+                                    break;
+                                case ',':
+                                    concatToken += caracter;
+                                    insertarToken(concatToken, 42);
+                                    setActualEstado(0);
+                                    concatToken = "";
+                                    break;
+                                case '{':
+                                    concatToken += caracter;
+                                    insertarToken(concatToken, 43);
+                                    setActualEstado(0);
+                                    concatToken = "";
+                                    break;
+                                case '}':
+                                    concatToken += caracter;
+                                    insertarToken(concatToken, 43);
+                                    setActualEstado(0);
+                                    concatToken = "";
                                     break;
                                 default:
                                     concatToken += caracter;
@@ -597,10 +615,14 @@ namespace Proyecto_1
                                 case '\t':
                                 case '\n':
                                 case '\b':
-                                case '+':
                                 case '\f':
-                                    concatToken += caracter;
                                     insertarToken(concatToken, getActualEstado());
+                                    concatToken = "";
+                                    setActualEstado(0);
+                                    break;
+                                case '+':
+                                    concatToken += caracter;
+                                     insertarToken(concatToken, getActualEstado());
                                     concatToken = "";
                                     setActualEstado(0);
                                     break;
@@ -854,6 +876,26 @@ namespace Proyecto_1
                                     concatToken = "";
                                     setActualEstado(0);
                                     break;
+                                case '+':
+                                case '-':
+                                case '*':
+                                case '/':
+                                case '!':
+                                case '>':
+                                case '<':
+                                case '=':
+                                case '(':
+                                case ')':
+                                case ';':
+                                case '"':
+                                case '{':
+                                case '}':
+                                case ',':
+                                    insertarToken(concatToken, getActualEstado());
+                                    concatToken = "";
+                                    i = i - 1;
+                                    setActualEstado(0);
+                                    break;
                                 default:
                                     concatToken += caracter;
                                     setActualEstado(41);
@@ -1095,6 +1137,9 @@ namespace Proyecto_1
                                 case ')':
                                 case ';':
                                 case '"':
+                                case '{':
+                                case'}':
+                                case ',':
 
                                     insertarToken(concatToken, getActualEstado());
                                     concatToken = "";
@@ -1156,147 +1201,138 @@ namespace Proyecto_1
             {
                 case 1:
                     tokenNuevo = new Token(palabra, "Morado", "Entero");
-                    if (parserer.automataPila(tokenNuevo))
-                    {
-                        listaTokens.Add(tokenNuevo);
-                    }
-                    else
-                    {
-                        tokenNuevo.setTipo("Error");
-                        listaTokens.Add(tokenNuevo);
-                    }
-                    
+                    compararSintaxis(tokenNuevo);
                     break;
 
                 case 3:
                     tokenNuevo = new Token(palabra, "Celeste", "Decimal");
-                    listaTokens.Add(tokenNuevo);
+                    compararSintaxis(tokenNuevo);
                     break;
 
                 case 4:
                     tokenNuevo = new Token(palabra, "Azul", "OperadorAritmetico");
-                    listaTokens.Add(tokenNuevo);
+                    compararSintaxis(tokenNuevo);
                     break;
 
                 case 6:
                     tokenNuevo = new Token(palabra, "Gris", "Cadena");
-                    listaTokens.Add(tokenNuevo);
+                    compararSintaxis(tokenNuevo);
                     break;
 
                 case 9:
                     tokenNuevo = new Token(palabra, "Cafe", "Caracter");
-                    listaTokens.Add(tokenNuevo);
+                    compararSintaxis(tokenNuevo);
                     break;
                 case 17:
                     tokenNuevo = new Token(palabra, "Cafe", "Caracter");
-                    listaTokens.Add(tokenNuevo);
+                    compararSintaxis(tokenNuevo);
                     break;
                 case 23:
                     tokenNuevo = new Token(palabra, "Cafe", "Caracter");
-                    listaTokens.Add(tokenNuevo);
+                    compararSintaxis(tokenNuevo);
                     break;
 
                 case 24:
                     tokenNuevo = new Token(palabra, "Azul", "OperadorAritmetico");
-                    listaTokens.Add(tokenNuevo);
+                    compararSintaxis(tokenNuevo);
                     break;
                 case 26:
                     tokenNuevo = new Token(palabra, "Azul", "OperadorLogico");
-                    listaTokens.Add(tokenNuevo);
+                    compararSintaxis(tokenNuevo);
                     break;
                 case 28:
                     tokenNuevo = new Token(palabra, "Azul", "OperadorAritmetico");
-                    listaTokens.Add(tokenNuevo);
+                    compararSintaxis(tokenNuevo);
                     break;
                 case 30:
                     tokenNuevo = new Token(palabra, "Azul", "OperadorRelacional");
-                    listaTokens.Add(tokenNuevo);
+                    compararSintaxis(tokenNuevo);
                     break;
                 case 31:
                     tokenNuevo = new Token(palabra, "Rosa", "Sentencia");
-                    listaTokens.Add(tokenNuevo);
+                    compararSintaxis(tokenNuevo);
                     break;
                 case 32:
                     tokenNuevo = new Token(palabra, "Rosa", "Sentencia");
-                    listaTokens.Add(tokenNuevo);
+                    compararSintaxis(tokenNuevo);
                     break;
                 case 38:
                     tokenNuevo = new Token(palabra, "Azul", "Signo");
-                    listaTokens.Add(tokenNuevo);
+                    compararSintaxis(tokenNuevo);
                     break;
                 case 39:
                     tokenNuevo = new Token(palabra, "Azul", "Signo");
-                    listaTokens.Add(tokenNuevo);
+                    compararSintaxis(tokenNuevo);
                     break;
                 case 36:
                     tokenNuevo = new Token(palabra, "Azul", "OperadorLogico");
-                    listaTokens.Add(tokenNuevo);
+                    compararSintaxis(tokenNuevo);
                     break;
 
                 case 77:
                     tokenNuevo = new Token(palabra, "Azul", "OperadorAritmetico");
-                    listaTokens.Add(tokenNuevo);
+                    compararSintaxis(tokenNuevo);
                     break;
                 case 78:
                     tokenNuevo = new Token(palabra, "Rojo", "Comentario");
-                    listaTokens.Add(tokenNuevo);
+                    compararSintaxis(tokenNuevo);
                     break;
                 case 79:
                     tokenNuevo = new Token(palabra, "Rojo", "Comentario");
-                    listaTokens.Add(tokenNuevo);
+                    compararSintaxis(tokenNuevo);
                     break;
                 case 8:
                     tokenNuevo = new Token(palabra, "Azul", "OperadorAritmetico");
-                    listaTokens.Add(tokenNuevo);
+                    compararSintaxis(tokenNuevo);
                     break;
                 case 11:
                     tokenNuevo = new Token(palabra, "Gris", "Cadena");
-                    listaTokens.Add(tokenNuevo);
+                    compararSintaxis(tokenNuevo);
                     break;
                 case 16:
                     tokenNuevo = new Token(palabra, "Naranja", "Booleano");
-                    listaTokens.Add(tokenNuevo);
+                    compararSintaxis(tokenNuevo);
                     break;
                 case 20:
                     tokenNuevo = new Token(palabra, "Naranja", "Booleano");
-                    listaTokens.Add(tokenNuevo);
+                    compararSintaxis(tokenNuevo);
                     break;
                 case 62:
-                    if (palabra.Equals("SI") || palabra.Equals("SINO") || palabra.Equals("SINO_SI") || palabra.Equals("MIENTRAS") || palabra.Equals("HACER") || palabra.Equals("DESDE") || palabra.Equals("HASTA") || palabra.Equals("INCREMENTO") || palabra.Equals("PRINCIPAL") || palabra.Equals("leer") || palabra.Equals("imprimir"))
+                    if (palabra.Equals("SI") || palabra.Equals("SINO") || palabra.Equals("SINO_SI") || palabra.Equals("MIENTRAS") || palabra.Equals("HACER") || palabra.Equals("DESDE") || palabra.Equals("HASTA") || palabra.Equals("INCREMENTO") || palabra.Equals("principal") || palabra.Equals("leer") || palabra.Equals("imprimir"))
                     {
                         tokenNuevo = new Token(palabra, "Morado", "Reservada");
-                        
-                        listaTokens.Add(tokenNuevo);
+
+                        compararSintaxis(tokenNuevo);
                     }
                     else if (palabra.Equals("entero"))
                     {
                         tokenNuevo = new Token(palabra, "Morado", "Entero");
-                        listaTokens.Add(tokenNuevo);
+                        compararSintaxis(tokenNuevo);
                     }
                     else if (palabra.Equals("decimal"))
                     {
                         tokenNuevo = new Token(palabra, "Morado", "Decimal");
-                        listaTokens.Add(tokenNuevo);
+                        compararSintaxis(tokenNuevo);
                     }
                     else if (palabra.Equals("cadena"))
                     {
                         tokenNuevo = new Token(palabra, "Morado", "Cadena");
-                        listaTokens.Add(tokenNuevo);
+                        compararSintaxis(tokenNuevo);
                     }
                     else if (palabra.Equals("booleano"))
                     {
                         tokenNuevo = new Token(palabra, "Morado", "Booleano");
-                        listaTokens.Add(tokenNuevo);
+                        compararSintaxis(tokenNuevo);
                     }
                     else if (palabra.Equals("caracter"))
                     {
                         tokenNuevo = new Token(palabra, "Morado", "Caracter");
-                        listaTokens.Add(tokenNuevo);
+                        compararSintaxis(tokenNuevo);
                     }
                     else
                     {
                         tokenNuevo = new Token(palabra, contadorfila, columnatemp - contadorcolumna, "Error");
-                        listaTokens.Add(tokenNuevo);
+                        compararSintaxis(tokenNuevo);
                     }
                     break;
                 case 63:
@@ -1305,7 +1341,15 @@ namespace Proyecto_1
                     break;
                 case 41:
                     tokenNuevo = new Token(palabra, "Blanco", "ID");
-                    listaTokens.Add(tokenNuevo);
+                    compararSintaxis(tokenNuevo);
+                    break;
+                case 42:
+                    tokenNuevo = new Token(palabra, "Blanco", "Coma");
+                    compararSintaxis(tokenNuevo);
+                    break;
+                case 43:
+                    tokenNuevo = new Token(palabra, "Blanco", "Corchete");
+                    compararSintaxis(tokenNuevo);
                     break;
             }
             contadorcolumna = 0;
@@ -1327,5 +1371,14 @@ namespace Proyecto_1
         }
 
 
+        public void compararSintaxis(Token token)
+        {
+            if (parserer.automataPila(token)==false)
+            {
+                token.setTipo("Error");
+            }
+            listaTokens.Add(token);
+                    
+        }
     }
 }
