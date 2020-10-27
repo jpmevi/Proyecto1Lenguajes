@@ -539,6 +539,12 @@ namespace Proyecto_1
                             pila.Push("(");
                             pila.Push("SINO_SI");
                         }
+                        else if (token.getTipo().Equals("Comentario"))
+                        {
+                            pila.Pop();
+                            pila.Push("E");
+                            pila.Push(token.getToken());
+                        }
                         else if (token.getToken().Equals("}"))
                         {
                             pila.Pop();
