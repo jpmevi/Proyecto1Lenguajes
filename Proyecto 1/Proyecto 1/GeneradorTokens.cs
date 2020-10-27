@@ -707,7 +707,6 @@ namespace Proyecto_1
                                 case '\b':
                                 case '=':
                                 case '\f':
-                                    concatToken += caracter;
                                     insertarToken(concatToken, getActualEstado());
                                     concatToken = "";
                                     setActualEstado(0);

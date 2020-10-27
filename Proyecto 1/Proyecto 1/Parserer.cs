@@ -38,7 +38,7 @@ namespace Proyecto_1
                         }
                         break;
                     case "B":
-                        if (token.getToken().Equals("entero") || token.getToken().Equals("decimal") || token.getToken().Equals("booleano") || token.getToken().Equals("cadena") || token.getToken().Equals("caracter") || token.getToken().Equals("leer") || token.getToken().Equals("imprimir"))
+                        if (token.getToken().Equals("entero") || token.getToken().Equals("decimal") || token.getToken().Equals("booleano") || token.getToken().Equals("cadena") || token.getToken().Equals("caracter") || token.getToken().Equals("leer") || token.getToken().Equals("imprimir") ||  token.getToken().Equals("MIENTRAS") ||  token.getToken().Equals("HACER") ||  token.getToken().Equals("DESDE") ||  token.getToken().Equals("SI")|| token.getTipo().Equals("Comentario"))
                         {
                             pila.Pop();
                             pila.Push("}");
@@ -83,6 +83,12 @@ namespace Proyecto_1
                             pila.Push("L");
                             pila.Push("F");
                         }
+                        else if (token.getTipo().Equals("Comentario"))
+                        {
+                            pila.Pop();
+                            pila.Push("L");
+                            pila.Push(token.getToken());
+                        }
                         else
                         {
                             return false;
@@ -102,7 +108,7 @@ namespace Proyecto_1
                         }
                         break;
                     case "Z'":
-                        if (token.getTipo().Equals("Booleano") || token.getTipo().Equals("Cadena") || token.getTipo().Equals("Caracter"))
+                        if (token.getTipo().Equals("Booleano") || token.getTipo().Equals("Caracter"))
                         {
                             pila.Pop();
                             pila.Push(token.getTipo());
@@ -111,6 +117,12 @@ namespace Proyecto_1
                         {
                             pila.Pop();
                             pila.Push("O");
+                        }
+                        else if (token.getTipo().Equals("Cadena"))
+                        {
+                            pila.Pop();
+                            pila.Push("O'");
+                            pila.Push(token.getTipo());
                         }
                         else
                         {
@@ -130,35 +142,35 @@ namespace Proyecto_1
                         }
                         break;
                     case "D'":
-                        if (token.getTipo().Equals("Entero"))
+                        if (token.getToken().Equals("entero"))
                         {
                             pila.Pop();
                             pila.Push("P");
                             pila.Push("ID");
                             pila.Push("Entero");
                         }
-                        else if (token.getTipo().Equals("Decimal"))
+                        else if (token.getToken().Equals("decimal"))
                         {
                             pila.Pop();
                             pila.Push("Q");
                             pila.Push("ID");
                             pila.Push("Decimal");
                         }
-                        else if (token.getTipo().Equals("Booleano"))
+                        else if (token.getToken().Equals("booleano"))
                         {
                             pila.Pop();
                             pila.Push("R");
                             pila.Push("ID");
                             pila.Push("Booleano");
                         }
-                        else if (token.getTipo().Equals("Cadena"))
+                        else if (token.getToken().Equals("cadena"))
                         {
                             pila.Pop();
                             pila.Push("S");
                             pila.Push("ID");
                             pila.Push("Cadena");
                         }
-                        else if (token.getTipo().Equals("Caracter"))
+                        else if (token.getToken().Equals("caracter"))
                         {
                             pila.Pop();
                             pila.Push("T");
@@ -290,6 +302,8 @@ namespace Proyecto_1
                         }
                         else
                         {
+                            pila.Pop();
+                            pila.Push("P");
                             return false;
                         }
                         break;
@@ -303,6 +317,7 @@ namespace Proyecto_1
                         else if (token.getToken().Equals(";"))
                         {
                             pila.Pop();
+                            
                         }
                         else
                         {
@@ -428,7 +443,7 @@ namespace Proyecto_1
                         }
                         break;
                     case "V":
-                        if (token.getTipo().Equals("ID") || token.getTipo().Equals("Entero") || token.getTipo().Equals("Decimal") || token.getTipo().Equals("Cadena"))
+                        if (token.getTipo().Equals("ID") || token.getTipo().Equals("Entero") || token.getTipo().Equals("Decimal") || token.getTipo().Equals("Cadena")|| token.getTipo().Equals("Booleano"))
                         {
                             pila.Pop();
                             pila.Push("V'");
@@ -451,7 +466,7 @@ namespace Proyecto_1
                         }
                         break;
                     case "V'":
-                        if (token.getTipo().Equals("ID") || token.getTipo().Equals("Entero") || token.getTipo().Equals("Decimal") || token.getTipo().Equals("Cadena"))
+                        if (token.getTipo().Equals("ID") || token.getTipo().Equals("Entero") || token.getTipo().Equals("Decimal") || token.getTipo().Equals("Cadena") || token.getTipo().Equals("Booleano"))
                         {
                             pila.Pop();
                             pila.Push(token.getTipo());
@@ -490,7 +505,7 @@ namespace Proyecto_1
                         {
                             pila.Pop();
                             pila.Push("}");
-                            pila.Push("V");
+                            pila.Push("L");
                             pila.Push("{");
                         }
                         else
@@ -523,6 +538,11 @@ namespace Proyecto_1
                             pila.Push("V");
                             pila.Push("(");
                             pila.Push("SINO_SI");
+                        }
+                        else if (token.getToken().Equals("}"))
+                        {
+                            pila.Pop();
+                            pila.Push("}");
                         }
                         else
                         {
