@@ -16,6 +16,7 @@ namespace Proyecto_1
         //Generamos nuestros objetos
         Archivos archivo = new Archivos();
         GeneradorTokens tokensclase = new GeneradorTokens();
+        private ArrayList listaVariables= new ArrayList();
         public IDE()
         {
             InitializeComponent();
@@ -288,5 +289,6 @@ namespace Proyecto_1
             richTextBox1.Text = "";
             richTextBox2.Text = "";
         }
+       
     }
 }

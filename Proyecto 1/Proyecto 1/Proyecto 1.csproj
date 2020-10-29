@@ -55,6 +55,7 @@
     <Compile Include="GeneradorTokens.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TablaSimbolos.cs" />
     <Compile Include="Token.cs" />
     <EmbeddedResource Include="IDE.resx">
       <DependentUpon>IDE.cs</DependentUpon>
