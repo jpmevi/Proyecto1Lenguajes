@@ -27,6 +27,8 @@ namespace Proyecto_1
                     case "A":
                         if (token.getToken().Equals("principal"))
                         {
+                            ArbolSintactico a = new ArbolSintactico();
+                            a.crearArchivo("prueba2");
                             pila.Pop();
                             pila.Push("B");
                             pila.Push("{");
@@ -810,7 +812,9 @@ namespace Proyecto_1
                             {
                                 contadorllave++;
                             }
-                            return false;
+                                return false;
+                            
+
                         }
                 }
 

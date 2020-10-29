@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArbolSintactico.cs" />
     <Compile Include="Archivos.cs" />
     <Compile Include="Parserer.cs" />
     <Compile Include="IDE.cs">

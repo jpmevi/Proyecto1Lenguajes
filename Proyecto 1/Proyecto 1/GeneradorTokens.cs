@@ -1199,6 +1199,7 @@ namespace Proyecto_1
             switch (estado)
             {
                 case 1:
+
                     tokenNuevo = new Token(palabra, contadorfila, columnatemp - contadorcolumna, "Entero");
                     compararSintaxis(tokenNuevo);
                     break;
