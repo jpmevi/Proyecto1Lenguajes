@@ -1203,44 +1203,26 @@ namespace Proyecto_1
                     tokenNuevo = new Token(palabra, contadorfila, columnatemp - contadorcolumna, "Entero");
                     compararSintaxis(tokenNuevo);
                     break;
-
                 case 3:
                     tokenNuevo = new Token(palabra, contadorfila, columnatemp - contadorcolumna, "Decimal");
                     compararSintaxis(tokenNuevo);
                     break;
-
-                case 4:
-                    tokenNuevo = new Token(palabra, contadorfila, columnatemp - contadorcolumna, "OperadorAritmetico");
-                    compararSintaxis(tokenNuevo);
-                    break;
-
+                case 11:
                 case 6:
                     tokenNuevo = new Token(palabra, contadorfila, columnatemp - contadorcolumna, "Cadena");
                     compararSintaxis(tokenNuevo);
                     break;
-
                 case 9:
-                    tokenNuevo = new Token(palabra, contadorfila, columnatemp - contadorcolumna, "Caracter");
-                    compararSintaxis(tokenNuevo);
-                    break;
                 case 17:
-                    tokenNuevo = new Token(palabra, contadorfila, columnatemp - contadorcolumna, "Caracter");
-                    compararSintaxis(tokenNuevo);
-                    break;
                 case 23:
                     tokenNuevo = new Token(palabra, contadorfila, columnatemp - contadorcolumna, "Caracter");
                     compararSintaxis(tokenNuevo);
                     break;
-
-                case 24:
-                    tokenNuevo = new Token(palabra, contadorfila, columnatemp - contadorcolumna, "OperadorAritmetico");
-                    compararSintaxis(tokenNuevo);
-                    break;
-                case 26:
-                    tokenNuevo = new Token(palabra, contadorfila, columnatemp - contadorcolumna, "OperadorLogico");
-                    compararSintaxis(tokenNuevo);
-                    break;
+                case 77:
+                case 8:
                 case 28:
+                case 4:
+                case 24:
                     tokenNuevo = new Token(palabra, contadorfila, columnatemp - contadorcolumna, "OperadorAritmetico");
                     compararSintaxis(tokenNuevo);
                     break;
@@ -1249,50 +1231,30 @@ namespace Proyecto_1
                     compararSintaxis(tokenNuevo);
                     break;
                 case 31:
-                    tokenNuevo = new Token(palabra, contadorfila, columnatemp - contadorcolumna, "Sentencia");
-                    compararSintaxis(tokenNuevo);
-                    break;
                 case 32:
                     tokenNuevo = new Token(palabra, contadorfila, columnatemp - contadorcolumna, "Sentencia");
                     compararSintaxis(tokenNuevo);
                     break;
                 case 38:
-                    tokenNuevo = new Token(palabra, contadorfila, columnatemp - contadorcolumna, "Signo");
-                    compararSintaxis(tokenNuevo);
-                    break;
                 case 39:
                     tokenNuevo = new Token(palabra, contadorfila, columnatemp - contadorcolumna, "Signo");
                     compararSintaxis(tokenNuevo);
                     break;
                 case 36:
+                case 26:
                     tokenNuevo = new Token(palabra, contadorfila, columnatemp - contadorcolumna, "OperadorLogico");
                     compararSintaxis(tokenNuevo);
                     break;
-
-                case 77:
-                    tokenNuevo = new Token(palabra, contadorfila, columnatemp - contadorcolumna, "OperadorAritmetico");
-                    compararSintaxis(tokenNuevo);
-                    break;
+               
                 case 78:
-                    tokenNuevo = new Token(palabra, contadorfila, columnatemp - contadorcolumna, "Comentario");
-                    listaTokens.Add(tokenNuevo);
-                    break;
                 case 79:
                     tokenNuevo = new Token(palabra, contadorfila, columnatemp - contadorcolumna, "Comentario");
                     listaTokens.Add(tokenNuevo);
                     break;
-                case 8:
-                    tokenNuevo = new Token(palabra, contadorfila, columnatemp - contadorcolumna, "OperadorAritmetico");
-                    compararSintaxis(tokenNuevo);
-                    break;
-                case 11:
-                    tokenNuevo = new Token(palabra, contadorfila, columnatemp - contadorcolumna, "Cadena");
-                    compararSintaxis(tokenNuevo);
-                    break;
+               
+               
+
                 case 16:
-                    tokenNuevo = new Token(palabra, contadorfila, columnatemp - contadorcolumna, "Booleano");
-                    compararSintaxis(tokenNuevo);
-                    break;
                 case 20:
                     tokenNuevo = new Token(palabra, contadorfila, columnatemp - contadorcolumna, "Booleano");
                     compararSintaxis(tokenNuevo);

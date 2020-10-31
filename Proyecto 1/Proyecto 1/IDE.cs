@@ -310,8 +310,8 @@ namespace Proyecto_1
             if (contador == 0)
             {
                 Parserer pa = new Parserer();
-                Graphviz g = new Graphviz();
-                g.crearGrafo(nodos, @"..\arbol.jpeg");
+                GenerarArbol g = new GenerarArbol(nodos);
+                g.generarDot(@"..\arbol.jpeg");
                 Arbol a = new Arbol();
                 a.Show();
                 

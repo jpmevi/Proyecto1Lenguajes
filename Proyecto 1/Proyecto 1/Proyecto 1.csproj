@@ -51,6 +51,7 @@
       <DependentUpon>Arbol.cs</DependentUpon>
     </Compile>
     <Compile Include="Archivos.cs" />
+    <Compile Include="GenerarArbol.cs" />
     <Compile Include="Graphviz.cs" />
     <Compile Include="Nodo.cs" />
     <Compile Include="Parserer.cs" />
@@ -141,6 +142,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\pngwing.com %289%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arbol.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Webp.net-resizeimage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\asdasda.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

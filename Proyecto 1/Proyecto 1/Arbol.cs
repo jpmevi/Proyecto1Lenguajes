@@ -35,30 +35,18 @@ namespace Proyecto_1
         {
             try
             {
-                SaveFileDialog savefile= new SaveFileDialog();
-                //Filtro para .gt
-                savefile.Filter = "jpg files (*.jpeg)|*.jpeg";
-                if (savefile.ShowDialog() == DialogResult.OK)
-                {
-                    //Comprueba si el archivo existe
-                    if (File.Exists(savefile.FileName))
-                    {
-                        //Mandamos los datos a la direccion del archivo
-                        string gt = savefile.FileName;
-                        Graphviz g = new Graphviz();
-                        g.crearGrafo(IDE.nodos, gt);
-                        this.Close();
-                    }
-                    else
-                    {
-                        //Mandamos los datos a la direccion del archivo
-                        string gt = savefile.FileName;
-                        Graphviz g = new Graphviz();
-                        g.crearGrafo(IDE.nodos, gt);
-                        this.Close();
-                    }
+               SaveFileDialog Guardar = new SaveFileDialog();
+            Guardar.Filter = "JPEG(.JPG)|.JPG|BMP(.BMP)|.BMP|PNG(.PNG)|.PNG";
+            Image Imagen = pictureBox1.Image;
+            if (Guardar.ShowDialog() == DialogResult.OK)
+            {
+                Imagen.Save(Guardar.FileName);
+                MessageBox.Show("Se guardo exitosamente");
+                this.Close();
+            }
+                  
                     
-                }
+                
             }
             catch (Exception)
             {

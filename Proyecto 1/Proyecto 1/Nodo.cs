@@ -9,12 +9,21 @@ namespace Proyecto_1
 {
     class Nodo
     {
-        private string padre;
+        private Nodo nodo_padre;
+        private string nombre;
+        private int nivel;
         private ArrayList hijos = new ArrayList();
 
-        public Nodo(string padre)
+        public Nodo(string nombre)
         {
-            this.padre = padre;
+            this.nombre = nombre;
+        }
+
+        public Nodo(string nombre, Nodo nodo_padre, int nivel)
+        {
+            this.nombre = nombre;
+            this.nodo_padre = nodo_padre;
+            this.nivel = nivel;
         }
 
         public void agregarHijo(string hijo)
@@ -27,9 +36,23 @@ namespace Proyecto_1
             return this.hijos;
         }
 
-        public string getPadre()
+        public Nodo getPadre()
         {
-            return this.padre;
+            return this.nodo_padre;
+        }
+
+        public int getNivel()
+        {
+            return this.nivel;
+        }
+        public string getNombre()
+        {
+            return this.nombre;
+        }
+
+        public void setNivel(int nivel)
+        {
+            this.nivel = nivel;
         }
     }
 }

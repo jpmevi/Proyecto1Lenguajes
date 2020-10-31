@@ -24,6 +24,7 @@ namespace Proyecto_1
                 string peek = (string)pila.Peek();
                 switch (peek)
                 {
+                        
                     case "A":
                         {
                             Nodo nod = new Nodo(peek);
@@ -395,7 +396,7 @@ namespace Proyecto_1
                             {
                                 pila.Pop();
                                 pila.Push("O'");
-                                nod.agregarHijo("O");
+                                nod.agregarHijo("O'");
                                 pila.Push("Cadena");
                                 nod.agregarHijo("Cadena");
                                 pila.Push("=");

@@ -63,6 +63,16 @@ namespace Proyecto_1.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap asdasda {
+            get {
+                object obj = ResourceManager.GetObject("asdasda", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Cargar {
             get {
                 object obj = ResourceManager.GetObject("Cargar", resourceCulture);
@@ -196,6 +206,16 @@ namespace Proyecto_1.Properties {
         internal static System.Drawing.Bitmap save {
             get {
                 object obj = ResourceManager.GetObject("save", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Webp_net_resizeimage {
+            get {
+                object obj = ResourceManager.GetObject("Webp_net_resizeimage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

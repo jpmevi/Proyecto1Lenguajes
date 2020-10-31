@@ -162,6 +162,7 @@
             // eliminarToolStripMenuItem
             // 
             this.eliminarToolStripMenuItem.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.eliminarToolStripMenuItem.Image = global::Proyecto_1.Properties.Resources.asdasda;
             this.eliminarToolStripMenuItem.Name = "eliminarToolStripMenuItem";
             this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.eliminarToolStripMenuItem.Text = "Eliminar";
@@ -309,7 +310,7 @@
             this.button5.FlatAppearance.BorderSize = 0;
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Image = global::Proyecto_1.Properties.Resources.save;
+            this.button5.Image = global::Proyecto_1.Properties.Resources.Webp_net_resizeimage;
             this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button5.Location = new System.Drawing.Point(364, 28);
             this.button5.Name = "button5";

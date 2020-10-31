@@ -15,7 +15,7 @@ namespace Proyecto_1
 {
     class Graphviz
     {
-
+            
             public const string LIB_GVC = @"..\external\gvc.dll";
             public const string LIB_GRAPH = @"..\external\cgraph.dll";
             public const int SUCCESS = 0;
@@ -117,40 +117,7 @@ namespace Proyecto_1
                 }
             }
 
-            public void crearGrafo( ArrayList nodos,string path)
-            {
-                //Path de la carpeta
-                string path1 = path;
-                //Crear carpeta
-                string codigoDot = "digraph G{";
-                codigoDot += "node[shape=box,height=.90];\n";
-                string final = "}";
-                int contador = 0;
-                ArrayList padres;
-                for (int i = 0; i < nodos.Count; i++)
-                {
-                    Nodo nodo = (Nodo)nodos[i];
-                    for (int j = 0; j < nodo.getHijos().Count; j++)
-                    {
-                        codigoDot += "\"" + nodo.getPadre()+"_"+contador + "\"" + " -> " + "\"" + nodo.getHijos()[j] +"_"+(contador+1)+ "\"" + ";\n";
-                    }
-                    contador++;
-                }
-                codigoDot += final;
-                Bitmap bm = new Bitmap(Graphviz.RenderImage(codigoDot, "jpg"));
-                var imagen = new Bitmap(bm);
-                using (var m = new MemoryStream())
-                {
-                    imagen = new Bitmap(bm);
-                } 
-                bm.Dispose();
-                Image image = (Image)imagen;
-                imagen.Save(path1 , ImageFormat.Jpeg);
-                imagen.Dispose();
-                
-
-                
-            }
+          
         }
     }
 
