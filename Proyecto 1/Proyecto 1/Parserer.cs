@@ -25,717 +25,1060 @@ namespace Proyecto_1
                 switch (peek)
                 {
                     case "A":
-                        if (token.getToken().Equals("principal"))
                         {
-                            ArbolSintactico a = new ArbolSintactico();
-                            a.crearArchivo("prueba2");
-                            pila.Pop();
-                            pila.Push("B");
-                            pila.Push("{");
-                            pila.Push("principal");
-                        }
-                        else
-                        {
-                            pila.Pop();
-                            pila.Push("B");
-                            pila.Push("{");
-                            return false;
-                        }
-                        break;
-                    case "B":
-                        if (token.getToken().Equals("entero") || token.getToken().Equals("decimal") || token.getToken().Equals("booleano") || token.getToken().Equals("cadena") || token.getToken().Equals("caracter") || token.getToken().Equals("leer") || token.getToken().Equals("imprimir") || token.getToken().Equals("MIENTRAS") || token.getToken().Equals("HACER") || token.getToken().Equals("DESDE") || token.getToken().Equals("SI") || token.getTipo().Equals("Comentario"))
-                        {
-                            pila.Pop();
-                            pila.Push("}");
-                            pila.Push("L");
-                        }
-                        else if (token.getTipo().Equals("ID"))
-                        {
-                            pila.Pop();
-                            pila.Push("}");
-                            pila.Push("L");
-                        }
-                        else
-                        {
-                            pila.Pop();
-                            pila.Push("}");
-                            pila.Push("L");
-                            return false;
-                        }
-                        break;
-                    case "L":
-                        if (token.getToken().Equals("entero") || token.getToken().Equals("decimal") || token.getToken().Equals("booleano") || token.getToken().Equals("cadena") || token.getToken().Equals("caracter"))
-                        {
-                            pila.Pop();
-                            pila.Push("L");
-                            pila.Push("D");
-                        }
-                        else if (token.getToken().Equals("leer") || token.getToken().Equals("imprimir"))
-                        {
-                            pila.Pop();
-                            pila.Push("L");
-                            pila.Push("G");
-                        }
-                        else if (token.getTipo().Equals("ID"))
-                        {
-                            pila.Pop();
-                            pila.Push("L");
-                            pila.Push("Z");
-                        }
-                        else if (token.getToken().Equals("}") && contadorllave == 0)
-                        {
-                            pila.Pop();
-                        }
-                        else if (token.getToken().Equals("SI") || token.getToken().Equals("HACER") || token.getToken().Equals("MIENTRAS") || token.getToken().Equals("DESDE"))
-                        {
-                            pila.Pop();
-                            pila.Push("L");
-                            pila.Push("F");
-                        }
-                        else if (token.getToken().Equals("}") && contadorllave != 0)
-                        {
-                            pila.Pop();
-                            pila.Push("L");
-                            pila.Push("}");
-                            contadorllave--;
-                        }
-                        else
-                        {
-                            if (token.getToken().Equals("{"))
+                            Nodo nod = new Nodo(peek);
+                            if (token.getToken().Equals("principal"))
                             {
-                                pila.Push("}");
-                                pila.Push("L");
+                                pila.Pop();
+                                pila.Push("B");
+                                nod.agregarHijo("B");
                                 pila.Push("{");
+                                nod.agregarHijo("{");
+                                pila.Push("principal");
+                                nod.agregarHijo("principal");
+                                IDE.nodos.Add(nod);
                             }
                             else
                             {
                                 pila.Pop();
-                                pila.Push("L");
+                                pila.Push("B");
+                                nod.agregarHijo("B");
+                                pila.Push("{");
+                                nod.agregarHijo("{");
+                                IDE.nodos.Add(nod);
                                 return false;
                             }
                         }
                         break;
-                    case "Z":
-                        if (token.getTipo().Equals("ID"))
+                    case "B":
                         {
-                            pila.Pop();
-                            pila.Push(";");
-                            pila.Push("J");
-                            pila.Push("ID");
+                            Nodo nod = new Nodo(peek);
+                            if (token.getToken().Equals("entero") || token.getToken().Equals("decimal") || token.getToken().Equals("booleano") || token.getToken().Equals("cadena") || token.getToken().Equals("caracter") || token.getToken().Equals("leer") || token.getToken().Equals("imprimir") || token.getToken().Equals("MIENTRAS") || token.getToken().Equals("HACER") || token.getToken().Equals("DESDE") || token.getToken().Equals("SI") || token.getTipo().Equals("Comentario"))
+                            {
+
+                                pila.Pop();
+                                pila.Push("}");
+                                nod.agregarHijo("}");
+                                pila.Push("L");
+                                nod.agregarHijo("L");
+                                IDE.nodos.Add(nod);
+                            }
+                            else if (token.getTipo().Equals("ID"))
+                            {
+                                pila.Pop();
+                                pila.Push("}");
+                                nod.agregarHijo("}");
+                                pila.Push("L");
+                                nod.agregarHijo("L");
+                                IDE.nodos.Add(nod);
+                            }
+                            else
+                            {
+                                pila.Pop();
+                                pila.Push("}");
+                                nod.agregarHijo("}");
+                                pila.Push("L");
+                                nod.agregarHijo("L");
+                                IDE.nodos.Add(nod);
+                                return false;
+                            }
                         }
-                        else
+                        break;
+                    case "L":
                         {
-                            return false;
+                            Nodo nod = new Nodo(peek);
+                            if (token.getToken().Equals("entero") || token.getToken().Equals("decimal") || token.getToken().Equals("booleano") || token.getToken().Equals("cadena") || token.getToken().Equals("caracter"))
+                            {
+                                pila.Pop();
+                                pila.Push("L");
+                                nod.agregarHijo("L");
+                                pila.Push("D");
+                                nod.agregarHijo("D");
+                                IDE.nodos.Add(nod);
+                            }
+                            else if (token.getToken().Equals("leer") || token.getToken().Equals("imprimir"))
+                            {
+                                pila.Pop();
+                                pila.Push("L");
+                                nod.agregarHijo("L");
+                                pila.Push("G");
+                                nod.agregarHijo("G");
+                                IDE.nodos.Add(nod);
+                            }
+                            else if (token.getTipo().Equals("ID"))
+                            {
+                                pila.Pop();
+                                pila.Push("L");
+                                nod.agregarHijo("L");
+                                pila.Push("Z");
+                                nod.agregarHijo("Z");
+                                IDE.nodos.Add(nod);
+                            }
+                            else if (token.getToken().Equals("}") && contadorllave == 0)
+                            {
+                                pila.Pop();
+                            }
+                            else if (token.getToken().Equals("SI") || token.getToken().Equals("HACER") || token.getToken().Equals("MIENTRAS") || token.getToken().Equals("DESDE"))
+                            {
+                                pila.Pop();
+                                pila.Push("L");
+                                nod.agregarHijo("L");
+                                pila.Push("F");
+                                nod.agregarHijo("F");
+                                IDE.nodos.Add(nod);
+                            }
+                            else if (token.getToken().Equals("}") && contadorllave != 0)
+                            {
+                                pila.Pop();
+                                pila.Push("L");
+                                nod.agregarHijo("L");
+                                pila.Push("}");
+                                nod.agregarHijo("}");
+                                IDE.nodos.Add(nod);
+                                contadorllave--;
+                            }
+                            else
+                            {
+                                if (token.getToken().Equals("{"))
+                                {
+                                    pila.Push("}");
+                                    nod.agregarHijo("}");
+                                    pila.Push("L");
+                                    nod.agregarHijo("L");
+                                    pila.Push("{");
+                                    nod.agregarHijo("{");
+                                    IDE.nodos.Add(nod);
+                                }
+                                else
+                                {
+                                    pila.Pop();
+                                    pila.Push("L");
+                                    nod.agregarHijo("L");
+                                    IDE.nodos.Add(nod);
+                                    return false;
+                                }
+                            }
+                        }
+                        break;
+                    case "Z":
+                        {
+                            Nodo nod = new Nodo(peek);
+                            if (token.getTipo().Equals("ID"))
+                            {
+                                pila.Pop();
+                                pila.Push(";");
+                                nod.agregarHijo(";");
+                                pila.Push("J");
+                                nod.agregarHijo("J");
+                                pila.Push("ID");
+                                nod.agregarHijo("ID");
+                                IDE.nodos.Add(nod);
+                            }
+                            else
+                            {
+                                return false;
+                            }
                         }
                         break;
                     case "Z'":
-                        if (token.getTipo().Equals("Booleano") || token.getTipo().Equals("Caracter"))
                         {
-                            pila.Pop();
-                            pila.Push(token.getTipo());
-                        }
-                        else if (token.getTipo().Equals("Entero") || token.getTipo().Equals("Decimal") || token.getTipo().Equals("ID") || token.getToken().Equals("("))
-                        {
-                            pila.Pop();
-                            pila.Push("O");
-                        }
-                        else if (token.getTipo().Equals("Cadena"))
-                        {
-                            pila.Pop();
-                            pila.Push("O'");
-                            pila.Push(token.getTipo());
-                        }
-                        else
-                        {
-                            return false;
+                            Nodo nod = new Nodo(peek);
+                            if (token.getTipo().Equals("Booleano") || token.getTipo().Equals("Caracter"))
+                            {
+                                pila.Pop();
+                                pila.Push(token.getTipo());
+                                nod.agregarHijo(token.getTipo());
+                                IDE.nodos.Add(nod);
+                            }
+                            else if (token.getTipo().Equals("Entero") || token.getTipo().Equals("Decimal") || token.getTipo().Equals("ID") || token.getToken().Equals("("))
+                            {
+                                pila.Pop();
+                                pila.Push("O");
+                                nod.agregarHijo("O");
+                                IDE.nodos.Add(nod);
+                            }
+                            else if (token.getTipo().Equals("Cadena"))
+                            {
+                                pila.Pop();
+                                pila.Push("O'");
+                                nod.agregarHijo("O'");
+                                pila.Push(token.getTipo());
+                                nod.agregarHijo(token.getTipo());
+                                IDE.nodos.Add(nod);
+                            }
+                            else
+                            {
+                                return false;
+                            }
                         }
                         break;
                     case "D":
+                        {
+                            Nodo nod = new Nodo(peek);
                         if (token.getTipo().Equals("Entero") || token.getTipo().Equals("Decimal") || token.getTipo().Equals("Booleano") || token.getTipo().Equals("Cadena") || token.getTipo().Equals("Caracter"))
                         {
                             pila.Pop();
                             pila.Push(";");
+                            nod.agregarHijo(";");
                             pila.Push("D'");
+                            nod.agregarHijo("D'");
+                            IDE.nodos.Add(nod);
                         }
                         else
                         {
                             return false;
                         }
+                        }
                         break;
                     case "D'":
+                        {
+                            Nodo nod = new Nodo(peek);
                         if (token.getToken().Equals("entero"))
                         {
                             pila.Pop();
                             pila.Push("P");
+                            nod.agregarHijo("P");
                             pila.Push("ID");
+                            nod.agregarHijo("ID");
                             pila.Push("Entero");
+                            nod.agregarHijo("Entero");
+                            IDE.nodos.Add(nod);
                         }
                         else if (token.getToken().Equals("decimal"))
                         {
                             pila.Pop();
                             pila.Push("Q");
+                            nod.agregarHijo("Q");
                             pila.Push("ID");
+                            nod.agregarHijo("ID");
                             pila.Push("Decimal");
+                            nod.agregarHijo("Decimal");
+                            IDE.nodos.Add(nod);
                         }
                         else if (token.getToken().Equals("booleano"))
                         {
                             pila.Pop();
                             pila.Push("R");
+                            nod.agregarHijo("R");
                             pila.Push("ID");
+                            nod.agregarHijo("ID");
                             pila.Push("Booleano");
+                            nod.agregarHijo("Booleano");
+                            IDE.nodos.Add(nod);
                         }
                         else if (token.getToken().Equals("cadena"))
                         {
                             pila.Pop();
                             pila.Push("S");
+                            nod.agregarHijo("S");
                             pila.Push("ID");
+                            nod.agregarHijo("ID");
                             pila.Push("Cadena");
+                            nod.agregarHijo("Cadena");
+                            IDE.nodos.Add(nod);
                         }
                         else if (token.getToken().Equals("caracter"))
                         {
                             pila.Pop();
                             pila.Push("T");
+                            nod.agregarHijo("T");
                             pila.Push("ID");
+                            nod.agregarHijo("ID");
                             pila.Push("Caracter");
+                            nod.agregarHijo("Caracter");
+                            IDE.nodos.Add(nod);
                         }
                         else
                         {
                             return false;
+                        }
                         }
                         break;
                     case "P":
-                        if (token.getToken().Equals("="))
                         {
-                            pila.Pop();
-                            pila.Push("O");
-                            pila.Push("=");
-                        }
-                        else if (token.getToken().Equals(","))
-                        {
-                            pila.Pop();
-                            pila.Push("I");
-                            pila.Push(",");
-                        }
-                        else if (token.getToken().Equals(";"))
-                        {
-                            pila.Pop();
-                        }
-                        else
-                        {
-                            return false;
+                            Nodo nod = new Nodo(peek);
+                            if (token.getToken().Equals("="))
+                            {
+                                pila.Pop();
+                                pila.Push("O");
+                                nod.agregarHijo("O");
+                                pila.Push("=");
+                                nod.agregarHijo("=");
+                                IDE.nodos.Add(nod);
+                            }
+                            else if (token.getToken().Equals(","))
+                            {
+                                pila.Pop();
+                                pila.Push("I");
+                                nod.agregarHijo("I");
+                                pila.Push(",");
+                                nod.agregarHijo(",");
+                                IDE.nodos.Add(nod);
+                            }
+                            else if (token.getToken().Equals(";"))
+                            {
+                                pila.Pop();
+                            }
+                            else
+                            {
+                                return false;
+                            }
                         }
                         break;
                     case "Q":
-                        if (token.getToken().Equals("="))
                         {
-                            pila.Pop();
-                            pila.Push("O");
-                            pila.Push("=");
-                        }
-                        else if (token.getToken().Equals(","))
-                        {
-                            pila.Pop();
-                            pila.Push("I");
-                            pila.Push(",");
-                        }
-                        else if (token.getToken().Equals(";"))
-                        {
-                            pila.Pop();
-                        }
-                        else
-                        {
-                            return false;
+                            Nodo nod = new Nodo(peek);
+                            if (token.getToken().Equals("="))
+                            {
+                                pila.Pop();
+                                pila.Push("O");
+                                nod.agregarHijo("O");
+                                pila.Push("=");
+                                nod.agregarHijo("=");
+                                IDE.nodos.Add(nod);
+                            }
+                            else if (token.getToken().Equals(","))
+                            {
+                                pila.Pop();
+                                pila.Push("I");
+                                nod.agregarHijo("I");
+                                pila.Push(",");
+                                nod.agregarHijo(",");
+                                IDE.nodos.Add(nod);
+                            }
+                            else if (token.getToken().Equals(";"))
+                            {
+                                pila.Pop();
+
+                            }
+                            else
+                            {
+                                return false;
+                            }
                         }
                         break;
                     case "R":
-                        if (token.getToken().Equals("="))
                         {
-                            pila.Pop();
-                            pila.Push("Booleano");
-                            pila.Push("=");
-                        }
-                        else if (token.getToken().Equals(","))
-                        {
-                            pila.Pop();
-                            pila.Push("I");
-                            pila.Push(",");
-                        }
-                        else if (token.getToken().Equals(";"))
-                        {
-                            pila.Pop();
-                        }
-                        else
-                        {
-                            return false;
+                            Nodo nod = new Nodo(peek);
+                            if (token.getToken().Equals("="))
+                            {
+                                pila.Pop();
+                                pila.Push("Booleano");
+                                nod.agregarHijo("Booleano");
+                                pila.Push("=");
+                                nod.agregarHijo("=");
+                                IDE.nodos.Add(nod);
+                            }
+                            else if (token.getToken().Equals(","))
+                            {
+                                pila.Pop();
+                                pila.Push("I");
+                                nod.agregarHijo("I");
+                                pila.Push(",");
+                                nod.agregarHijo(",");
+                                IDE.nodos.Add(nod);
+                            }
+                            else if (token.getToken().Equals(";"))
+                            {
+                                pila.Pop();
+                            }
+                            else
+                            {
+                                return false;
+                            }
                         }
                         break;
                     case "S":
-                        if (token.getToken().Equals("="))
                         {
-                            pila.Pop();
-                            pila.Push("O'");
-                            pila.Push("Cadena");
-                            pila.Push("=");
-                        }
-                        else if (token.getToken().Equals(","))
-                        {
-                            pila.Pop();
-                            pila.Push("I");
-                            pila.Push(",");
-                        }
-                        else if (token.getToken().Equals(";"))
-                        {
-                            pila.Pop();
-                        }
-                        else
-                        {
-                            return false;
+                            Nodo nod = new Nodo(peek);
+                            if (token.getToken().Equals("="))
+                            {
+                                pila.Pop();
+                                pila.Push("O'");
+                                nod.agregarHijo("O");
+                                pila.Push("Cadena");
+                                nod.agregarHijo("Cadena");
+                                pila.Push("=");
+                                nod.agregarHijo("=");
+                                IDE.nodos.Add(nod);
+                            }
+                            else if (token.getToken().Equals(","))
+                            {
+                                pila.Pop();
+                                pila.Push("I");
+                                nod.agregarHijo("I");
+                                pila.Push(",");
+                                nod.agregarHijo(",");
+                                IDE.nodos.Add(nod);
+                            }
+                            else if (token.getToken().Equals(";"))
+                            {
+                                pila.Pop();
+                            }
+                            else
+                            {
+                                return false;
+                            }
                         }
                         break;
                     case "T":
-                        if (token.getToken().Equals("="))
                         {
-                            pila.Pop();
-                            pila.Push("Caracter");
-                            pila.Push("=");
-                        }
-                        else if (token.getToken().Equals(","))
-                        {
-                            pila.Pop();
-                            pila.Push("I");
-                            pila.Push(",");
-                        }
-                        else if (token.getToken().Equals(";"))
-                        {
-                            pila.Pop();
-                        }
-                        else
-                        {
-                            return false;
+                            Nodo nod = new Nodo(peek);
+                            if (token.getToken().Equals("="))
+                            {
+                                pila.Pop();
+                                pila.Push("Caracter");
+                                nod.agregarHijo("Caracter");
+                                pila.Push("=");
+                                nod.agregarHijo("=");
+                                IDE.nodos.Add(nod);
+                            }
+                            else if (token.getToken().Equals(","))
+                            {
+                                pila.Pop();
+                                pila.Push("I");
+                                nod.agregarHijo("I");
+                                pila.Push(",");
+                                nod.agregarHijo(",");
+                                IDE.nodos.Add(nod);
+                            }
+                            else if (token.getToken().Equals(";"))
+                            {
+                                pila.Pop();
+                            }
+                            else
+                            {
+                                return false;
+                            }
                         }
                         break;
                     case "I":
-                        if (token.getTipo().Equals("ID"))
                         {
-                            pila.Pop();
-                            pila.Push("I'");
-                            pila.Push("ID");
+                            Nodo nod = new Nodo(peek);
+                            if (token.getTipo().Equals("ID"))
+                            {
+                                pila.Pop();
+                                pila.Push("I'");
+                                nod.agregarHijo("I'");
+                                pila.Push("ID");
+                                nod.agregarHijo("ID");
+                                IDE.nodos.Add(nod);
+                            }
+                            else
+                            {
+                                pila.Pop();
+                                pila.Push("P");
+                                nod.agregarHijo("P");
+                                IDE.nodos.Add(nod);
+                                return false;
+                            }
+                            break;
                         }
-                        else
-                        {
-                            pila.Pop();
-                            pila.Push("P");
-                            return false;
-                        }
-                        break;
                     case "I'":
-                        if (token.getToken().Equals(","))
                         {
-                            pila.Pop();
-                            pila.Push("I");
-                            pila.Push(",");
-                        }
-                        else if (token.getToken().Equals(";"))
-                        {
-                            pila.Pop();
+                            Nodo nod = new Nodo(peek);
+                            if (token.getToken().Equals(","))
+                            {
+                                pila.Pop();
+                                pila.Push("I");
+                                nod.agregarHijo("I");
+                                pila.Push(",");
+                                nod.agregarHijo(",");
+                                IDE.nodos.Add(nod);
+                            }
+                            else if (token.getToken().Equals(";"))
+                            {
+                                pila.Pop();
 
-                        }
-                        else
-                        {
-                            return false;
+                            }
+                            else
+                            {
+                                return false;
+                            }
                         }
                         break;
                     case "G":
-                        if (token.getToken().Equals("leer"))
                         {
-                            pila.Pop();
-                            pila.Push(";");
-                            pila.Push(")");
-                            pila.Push("ID");
-                            pila.Push("(");
-                            pila.Push("leer");
-                        }
-                        else if (token.getToken().Equals("imprimir"))
-                        {
-                            pila.Pop();
-                            pila.Push("C");
-                            pila.Push("(");
-                            pila.Push("imprimir");
-                        }
-                        else
-                        {
-                            return false;
+                            Nodo nod = new Nodo(peek);
+                            if (token.getToken().Equals("leer"))
+                            {
+                                pila.Pop();
+                                pila.Push(";");
+                                nod.agregarHijo(";");
+                                pila.Push(")");
+                                nod.agregarHijo(")");
+                                pila.Push("ID");
+                                nod.agregarHijo("ID");
+                                pila.Push("(");
+                                nod.agregarHijo("(");
+                                pila.Push("leer");
+                                nod.agregarHijo("leer");
+                                IDE.nodos.Add(nod);
+                            }
+                            else if (token.getToken().Equals("imprimir"))
+                            {
+                                pila.Pop();
+                                pila.Push("C");
+                                nod.agregarHijo("C");
+                                pila.Push("(");
+                                nod.agregarHijo("(");
+                                pila.Push("imprimir");
+                                nod.agregarHijo("imprimir");
+                                IDE.nodos.Add(nod);
+                            }
+                            else
+                            {
+                                return false;
+                            }
                         }
                         break;
                     case "C":
-                        if (token.getTipo().Equals("ID") || token.getTipo().Equals("Entero") || token.getTipo().Equals("Decimal") || token.getTipo().Equals("Cadena"))
                         {
-                            pila.Pop();
-                            pila.Push(";");
-                            pila.Push(")");
-                            pila.Push("M");
-                        }
-                        else
-                        {
-                            return false;
+                            Nodo nod = new Nodo(peek);
+                            if (token.getTipo().Equals("ID") || token.getTipo().Equals("Entero") || token.getTipo().Equals("Decimal") || token.getTipo().Equals("Cadena"))
+                            {
+                                pila.Pop();
+                                pila.Push(";");
+                                nod.agregarHijo(";");
+                                pila.Push(")");
+                                nod.agregarHijo(")");
+                                pila.Push("M");
+                                nod.agregarHijo("M");
+                                IDE.nodos.Add(nod);
+                            }
+                            else
+                            {
+                                return false;
+                            }
                         }
                         break;
                     case "M":
-                        if (token.getTipo().Equals("ID") || token.getTipo().Equals("Entero") || token.getTipo().Equals("Decimal") || token.getTipo().Equals("Cadena"))
                         {
-                            pila.Pop();
-                            pila.Push("M'");
-                            pila.Push(token.getTipo());
-                        }
-                        else
-                        {
-                            return false;
+                            Nodo nod = new Nodo(peek);
+                            if (token.getTipo().Equals("ID") || token.getTipo().Equals("Entero") || token.getTipo().Equals("Decimal") || token.getTipo().Equals("Cadena"))
+                            {
+                                pila.Pop();
+                                pila.Push("M'");
+                                nod.agregarHijo("M'");
+                                pila.Push(token.getTipo());
+                                IDE.nodos.Add(nod);
+                            }
+                            else
+                            {
+                                return false;
+                            }
                         }
                         break;
                     case "M'":
-                        if (token.getToken().Equals("+"))
                         {
-                            pila.Pop();
-                            pila.Push("M");
-                            pila.Push("+");
-                        }
-                        else if (token.getToken().Equals(")"))
-                        {
-                            pila.Pop();
-                        }
-                        else if (token.getToken().Equals(";"))
-                        {
-                            pila.Pop();
-                        }
-                        else
-                        {
-                            return false;
+                            Nodo nod = new Nodo(peek);
+                            if (token.getToken().Equals("+"))
+                            {
+                                pila.Pop();
+                                pila.Push("M");
+                                nod.agregarHijo("M");
+                                pila.Push("+");
+                                nod.agregarHijo("+");
+                                IDE.nodos.Add(nod);
+                            }
+                            else if (token.getToken().Equals(")"))
+                            {
+                                pila.Pop();
+                            }
+                            else if (token.getToken().Equals(";"))
+                            {
+                                pila.Pop();
+                            }
+                            else
+                            {
+                                return false;
+                            }
                         }
                         break;
                     case "F":
-                        if (token.getToken().Equals("SI"))
                         {
-                            pila.Pop();
-                            pila.Push("E'");
-                            pila.Push("E");
-                            pila.Push("S'");
-                            pila.Push(")");
-                            pila.Push("V");
-                            pila.Push("(");
-                            pila.Push("SI");
-                        }
-                        else if (token.getToken().Equals("MIENTRAS"))
-                        {
-                            pila.Pop();
-                            pila.Push("S'");
-                            pila.Push(")");
-                            pila.Push("V");
-                            pila.Push("(");
-                            pila.Push("MIENTRAS");
-                        }
-                        else if (token.getToken().Equals("HACER"))
-                        {
-                            pila.Pop();
-                            pila.Push(")");
-                            pila.Push("V");
-                            pila.Push("(");
-                            pila.Push("MIENTRAS");
-                            pila.Push("S'");
-                            pila.Push("HACER");
-                        }
-                        else if (token.getToken().Equals("DESDE"))
-                        {
-                            pila.Pop();
-                            pila.Push("S'");
-                            pila.Push("ENTERO");
-                            pila.Push("INCREMENTO");
-                            pila.Push("ENTERO");
-                            pila.Push("S''");
-                            pila.Push("ID");
-                            pila.Push("HASTA");
-                            pila.Push("ENTERO");
-                            pila.Push("=");
-                            pila.Push("ID");
-                            pila.Push("=DESDE");
-                        }
-                        else
-                        {
-                            return false;
+                            Nodo nod = new Nodo(peek);
+                            if (token.getToken().Equals("SI"))
+                            {
+                                pila.Pop();
+                                pila.Push("E'");
+                                nod.agregarHijo("E'");
+                                pila.Push("E");
+                                nod.agregarHijo("E");
+                                pila.Push("S'");
+                                nod.agregarHijo("S'");
+                                pila.Push(")");
+                                nod.agregarHijo(")");
+                                pila.Push("V");
+                                nod.agregarHijo("V");
+                                pila.Push("(");
+                                nod.agregarHijo("(");
+                                pila.Push("SI");
+                                nod.agregarHijo("SI");
+                                IDE.nodos.Add(nod);
+                            }
+                            else if (token.getToken().Equals("MIENTRAS"))
+                            {
+                                pila.Pop();
+                                pila.Push("S'");
+                                nod.agregarHijo("S'");
+                                pila.Push(")");
+                                nod.agregarHijo(")");
+                                pila.Push("V");
+                                nod.agregarHijo("V");
+                                pila.Push("(");
+                                nod.agregarHijo("(");
+                                pila.Push("MIENTRAS");
+                                nod.agregarHijo("MIENTRAS");
+                                IDE.nodos.Add(nod);
+                            }
+                            else if (token.getToken().Equals("HACER"))
+                            {
+                                pila.Pop();
+                                pila.Push(")");
+                                nod.agregarHijo(")");
+                                pila.Push("V");
+                                nod.agregarHijo("V");
+                                pila.Push("(");
+                                nod.agregarHijo("(");
+                                pila.Push("MIENTRAS");
+                                nod.agregarHijo("MIENTRAS");
+                                pila.Push("S'");
+                                nod.agregarHijo("S'");
+                                pila.Push("HACER");
+                                nod.agregarHijo("HACER");
+                                IDE.nodos.Add(nod);
+                            }
+                            else if (token.getToken().Equals("DESDE"))
+                            {
+                                pila.Pop();
+                                pila.Push("S'");
+                                nod.agregarHijo("S'");
+                                pila.Push("ENTERO");
+                                nod.agregarHijo("ENTERO");
+                                pila.Push("INCREMENTO");
+                                nod.agregarHijo("INCREMENTO");
+                                pila.Push("ENTERO");
+                                nod.agregarHijo("ENTERO");
+                                pila.Push("S''");
+                                nod.agregarHijo("S''");
+                                pila.Push("ID");
+                                nod.agregarHijo("ID");
+                                pila.Push("HASTA");
+                                nod.agregarHijo("HASTA");
+                                pila.Push("ENTERO");
+                                nod.agregarHijo("ENTERO");
+                                pila.Push("=");
+                                nod.agregarHijo("=");
+                                pila.Push("ID");
+                                nod.agregarHijo("ID");
+                                pila.Push("DESDE");
+                                nod.agregarHijo("DESDE");
+                                IDE.nodos.Add(nod);
+                            }
+                            else
+                            {
+                                return false;
+                            }
                         }
                         break;
                     case "V":
-                        if (token.getTipo().Equals("ID") || token.getTipo().Equals("Entero") || token.getTipo().Equals("Decimal") || token.getTipo().Equals("Cadena") || token.getTipo().Equals("Booleano"))
                         {
-                            pila.Pop();
-                            pila.Push("V'");
-                            pila.Push("X");
-                            pila.Push("V'");
-                        }
-                        else if (token.getToken().Equals("("))
-                        {
-                            pila.Pop();
-                            pila.Push("X'");
-                            pila.Push(")");
-                            pila.Push("V'");
-                            pila.Push("X");
-                            pila.Push("V'");
-                            pila.Push("(");
-                        }
-                        else
-                        {
-                            return false;
+                            Nodo nod = new Nodo(peek);
+                            if (token.getTipo().Equals("ID") || token.getTipo().Equals("Entero") || token.getTipo().Equals("Decimal") || token.getTipo().Equals("Cadena") || token.getTipo().Equals("Booleano"))
+                            {
+                                pila.Pop();
+                                pila.Push("V'");
+                                nod.agregarHijo("V'");
+                                pila.Push("X");
+                                nod.agregarHijo("X");
+                                pila.Push("V'");
+                                nod.agregarHijo("V'");
+                                IDE.nodos.Add(nod);
+                            }
+                            else if (token.getToken().Equals("("))
+                            {
+                                pila.Pop();
+                                pila.Push("X'");
+                                nod.agregarHijo("X'");
+                                pila.Push(")");
+                                nod.agregarHijo(")");
+                                pila.Push("V'");
+                                nod.agregarHijo("V'");
+                                pila.Push("X");
+                                nod.agregarHijo("X");
+                                pila.Push("V'");
+                                nod.agregarHijo("V'");
+                                pila.Push("(");
+                                nod.agregarHijo("(");
+                                IDE.nodos.Add(nod);
+                            }
+                            else
+                            {
+                                return false;
+                            }
                         }
                         break;
                     case "V'":
-                        if (token.getTipo().Equals("ID") || token.getTipo().Equals("Entero") || token.getTipo().Equals("Decimal") || token.getTipo().Equals("Cadena") || token.getTipo().Equals("Booleano"))
                         {
-                            pila.Pop();
-                            pila.Push(token.getTipo());
-                        }
-                        else
-                        {
-                            return false;
+                            Nodo nod = new Nodo(peek);
+                            if (token.getTipo().Equals("ID") || token.getTipo().Equals("Entero") || token.getTipo().Equals("Decimal") || token.getTipo().Equals("Cadena") || token.getTipo().Equals("Booleano"))
+                            {
+                                pila.Pop();
+                                pila.Push(token.getTipo());
+                                nod.agregarHijo(token.getTipo());
+                                IDE.nodos.Add(nod);
+                            }
+                            else
+                            {
+                                return false;
+                            }
                         }
                         break;
                     case "X":
-                        if (token.getToken().Equals(">") || token.getToken().Equals("<") || token.getToken().Equals("==") || token.getToken().Equals("<=") || token.getToken().Equals(">=") || token.getToken().Equals("!="))
                         {
-                            pila.Pop();
-                            pila.Push(token.getToken());
-                        }
-                        else
-                        {
-                            return false;
+                            Nodo nod = new Nodo(peek);
+                            if (token.getToken().Equals(">") || token.getToken().Equals("<") || token.getToken().Equals("==") || token.getToken().Equals("<=") || token.getToken().Equals(">=") || token.getToken().Equals("!="))
+                            {
+                                pila.Pop();
+                                pila.Push(token.getToken());
+                                nod.agregarHijo(token.getToken());
+                                IDE.nodos.Add(nod);
+                            }
+                            else
+                            {
+                                return false;
+                            }
                         }
                         break;
                     case "X'":
-                        if (token.getToken().Equals("&&") || token.getToken().Equals("||"))
                         {
-                            pila.Pop();
-                            pila.Push("V");
-                            pila.Push(token.getToken());
-                        }
-                        else if (token.getToken().Equals(")"))
-                        {
-                            pila.Pop();
-                        }
-                        else
-                        {
-                            return false;
+                            Nodo nod = new Nodo(peek);
+                            if (token.getToken().Equals("&&") || token.getToken().Equals("||"))
+                            {
+                                pila.Pop();
+                                pila.Push("V");
+                                nod.agregarHijo("V");
+                                pila.Push(token.getToken());
+                                nod.agregarHijo(token.getToken());
+                                IDE.nodos.Add(nod);
+                            }
+                            else if (token.getToken().Equals(")"))
+                            {
+                                pila.Pop();
+                            }
+                            else
+                            {
+                                return false;
+                            }
                         }
                         break;
                     case "S'":
-                        if (token.getToken().Equals("{"))
                         {
-                            pila.Pop();
-                            pila.Push("}");
-                            pila.Push("L");
-                            pila.Push("{");
-                        }
-                        else
-                        {
-                            return false;
+                            Nodo nod = new Nodo(peek);
+                            if (token.getToken().Equals("{"))
+                            {
+                                pila.Pop();
+                                pila.Push("}");
+                                nod.agregarHijo("}");
+                                pila.Push("L");
+                                nod.agregarHijo("L");
+                                pila.Push("{");
+                                nod.agregarHijo("{");
+                                IDE.nodos.Add(nod);
+                            }
+                            else
+                            {
+                                return false;
+                            }
                         }
                         break;
                     case "S''":
-                        if (token.getToken().Equals(">") || token.getToken().Equals("<") || token.getToken().Equals("<=") || token.getToken().Equals(">=") || token.getToken().Equals("="))
                         {
-                            pila.Pop();
-                            pila.Push(token.getToken());
-                        }
-                        else
-                        {
-                            return false;
+                            Nodo nod = new Nodo(peek);
+                            if (token.getToken().Equals(">") || token.getToken().Equals("<") || token.getToken().Equals("<=") || token.getToken().Equals(">=") || token.getToken().Equals("="))
+                            {
+                                pila.Pop();
+                                pila.Push(token.getToken());
+                                nod.agregarHijo(token.getToken());
+                                IDE.nodos.Add(nod);
+                            }
+                            else
+                            {
+                                return false;
+                            }
                         }
                         break;
                     case "E":
-                        if (token.getToken().Equals("decimal") || token.getToken().Equals("entero") || token.getToken().Equals("booleano") || token.getToken().Equals("cadena") || token.getToken().Equals("caracter") || token.getToken().Equals("imprimir") || token.getToken().Equals("leer") || token.getToken().Equals("SI") || token.getToken().Equals("SINO") || token.getToken().Equals("MIENTRAS") || token.getToken().Equals("HACER") || token.getToken().Equals("DESDE") || token.getTipo().Equals("ID"))
                         {
-                            pila.Pop();
-                        }
-                        else if (token.getToken().Equals("SINO_SI"))
-                        {
-                            pila.Pop();
-                            pila.Push("E");
-                            pila.Push("S'");
-                            pila.Push(")");
-                            pila.Push("V");
-                            pila.Push("(");
-                            pila.Push("SINO_SI");
-                        }
-                        else if (token.getTipo().Equals("Comentario"))
-                        {
-                            pila.Pop();
-                            pila.Push("E");
-                            pila.Push(token.getToken());
-                        }
-                        else if (token.getToken().Equals("}"))
-                        {
-                            pila.Pop();
-                            pila.Push("}");
-                        }
-                        else
-                        {
-                            return false;
+                            Nodo nod = new Nodo(peek);
+                            if (token.getToken().Equals("decimal") || token.getToken().Equals("entero") || token.getToken().Equals("booleano") || token.getToken().Equals("cadena") || token.getToken().Equals("caracter") || token.getToken().Equals("imprimir") || token.getToken().Equals("leer") || token.getToken().Equals("SI") || token.getToken().Equals("SINO") || token.getToken().Equals("MIENTRAS") || token.getToken().Equals("HACER") || token.getToken().Equals("DESDE") || token.getTipo().Equals("ID"))
+                            {
+                                pila.Pop();
+                            }
+                            else if (token.getToken().Equals("SINO_SI"))
+                            {
+                                pila.Pop();
+                                pila.Push("E");
+                                nod.agregarHijo("E");
+                                pila.Push("S'");
+                                nod.agregarHijo("S'");
+                                pila.Push(")");
+                                nod.agregarHijo(")");
+                                pila.Push("V");
+                                nod.agregarHijo("V");
+                                pila.Push("(");
+                                nod.agregarHijo("(");
+                                pila.Push("SINO_SI");
+                                nod.agregarHijo("SINO_SI");
+                                IDE.nodos.Add(nod);
+                            }
+                            else if (token.getTipo().Equals("Comentario"))
+                            {
+                                pila.Pop();
+                                pila.Push("E");
+                                nod.agregarHijo("E");
+                                pila.Push(token.getToken());
+                                nod.agregarHijo(token.getToken());
+                                IDE.nodos.Add(nod);
+                            }
+                            else if (token.getToken().Equals("}"))
+                            {
+                                pila.Pop();
+                                pila.Push("}");
+                                nod.agregarHijo("}");
+                                IDE.nodos.Add(nod);
+                            }
+                            else
+                            {
+                                return false;
+                            }
                         }
                         break;
                     case "E'":
-                        if (token.getToken().Equals("decimal") || token.getToken().Equals("entero") || token.getToken().Equals("booleano") || token.getToken().Equals("cadena") || token.getToken().Equals("caracter") || token.getToken().Equals("imprimir") || token.getToken().Equals("leer") || token.getToken().Equals("SI") || token.getToken().Equals("MIENTRAS") || token.getToken().Equals("HACER") || token.getToken().Equals("DESDE") || token.getTipo().Equals("ID"))
                         {
-                            pila.Pop();
-                        }
-                        else if (token.getToken().Equals("SINO"))
-                        {
-                            pila.Pop();
-                            pila.Push("S'");
-                            pila.Push("SINO");
-                        }
-                        else
-                        {
-                            return false;
+                            Nodo nod = new Nodo(peek);
+                            if (token.getToken().Equals("decimal") || token.getToken().Equals("entero") || token.getToken().Equals("booleano") || token.getToken().Equals("cadena") || token.getToken().Equals("caracter") || token.getToken().Equals("imprimir") || token.getToken().Equals("leer") || token.getToken().Equals("SI") || token.getToken().Equals("MIENTRAS") || token.getToken().Equals("HACER") || token.getToken().Equals("DESDE") || token.getTipo().Equals("ID"))
+                            {
+                                pila.Pop();
+                            }
+                            else if (token.getToken().Equals("SINO"))
+                            {
+                                pila.Pop();
+                                pila.Push("S'");
+                                nod.agregarHijo("S'");
+                                pila.Push("SINO");
+                                nod.agregarHijo("SINO");
+                                IDE.nodos.Add(nod);
+                            }
+                            else
+                            {
+                                return false;
+                            }
                         }
                         break;
                     case "O":
-                        if (token.getTipo().Equals("ID"))
                         {
-                            pila.Pop();
-                            pila.Push("N");
-                            pila.Push("ID");
-                        }
-                        else if (token.getTipo().Equals("Decimal") || token.getTipo().Equals("Entero"))
-                        {
-                            pila.Pop();
-                            pila.Push("N");
-                            pila.Push(token.getTipo());
-                        }
-                        else if (token.getToken().Equals("("))
-                        {
-                            pila.Pop();
-                            pila.Push("N");
-                            pila.Push(")");
-                            pila.Push("O");
-                            pila.Push("(");
-                        }
-                        else
-                        {
-                            pila.Pop();
-                            pila.Push("N");
-                            return false;
+                            Nodo nod = new Nodo(peek);
+                            if (token.getTipo().Equals("ID"))
+                            {
+                                pila.Pop();
+                                pila.Push("N");
+                                nod.agregarHijo("N");
+                                pila.Push("ID");
+                                nod.agregarHijo("ID");
+                                IDE.nodos.Add(nod);
+                            }
+                            else if (token.getTipo().Equals("Decimal") || token.getTipo().Equals("Entero"))
+                            {
+                                pila.Pop();
+                                pila.Push("N");
+                                nod.agregarHijo("N");
+                                pila.Push(token.getTipo());
+                                nod.agregarHijo(token.getTipo());
+                                IDE.nodos.Add(nod);
+                            }
+                            else if (token.getToken().Equals("("))
+                            {
+                                pila.Pop();
+                                pila.Push("N");
+                                nod.agregarHijo("N");
+                                pila.Push(")");
+                                nod.agregarHijo(")");
+                                pila.Push("O");
+                                nod.agregarHijo("O");
+                                pila.Push("(");
+                                nod.agregarHijo("(");
+                                IDE.nodos.Add(nod);
+                            }
+                            else
+                            {
+                                pila.Pop();
+                                pila.Push("N");
+                                nod.agregarHijo("N");
+                                IDE.nodos.Add(nod);
+                                return false;
+                            }
                         }
                         break;
                     case "N":
-                        if (token.getToken().Equals("+") || token.getToken().Equals("-") || token.getToken().Equals("*") || token.getToken().Equals("/"))
                         {
-                            pila.Pop();
-                            pila.Push("O");
-                            pila.Push(token.getToken());
-                        }
-                        else if (token.getToken().Equals(")"))
-                        {
-                            pila.Pop();
-                        }
-                        else if (token.getToken().Equals(";"))
-                        {
-                            pila.Pop();
-                        }
-                        else
-                        {
-                            return false;
+                            Nodo nod = new Nodo(peek);
+                            if (token.getToken().Equals("+") || token.getToken().Equals("-") || token.getToken().Equals("*") || token.getToken().Equals("/"))
+                            {
+                                pila.Pop();
+                                pila.Push("O");
+                                nod.agregarHijo("O");
+                                pila.Push(token.getToken());
+                                nod.agregarHijo(token.getToken());
+                                IDE.nodos.Add(nod);
+                            }
+                            else if (token.getToken().Equals(")"))
+                            {
+                                pila.Pop();
+                            }
+                            else if (token.getToken().Equals(";"))
+                            {
+                                pila.Pop();
+                            }
+                            else
+                            {
+                                return false;
+                            }
                         }
                         break;
                     case "J":
-                        if (token.getToken().Equals("="))
                         {
-                            pila.Pop();
-                            pila.Push("Z'");
-                            pila.Push("=");
-                        }
-                        else if (token.getToken().Equals("++"))
-                        {
-                            pila.Pop();
-                            pila.Push("++");
-                        }
-                        else if (token.getToken().Equals("--"))
-                        {
-                            pila.Pop();
-                            pila.Push("--");
-                        }
-                        else
-                        {
-                            pila.Pop();
-                            return false;
+                            Nodo nod = new Nodo(peek);
+                            if (token.getToken().Equals("="))
+                            {
+                                pila.Pop();
+                                pila.Push("Z'");
+                                nod.agregarHijo("Z'");
+                                pila.Push("=");
+                                nod.agregarHijo("=");
+                                IDE.nodos.Add(nod);
+                            }
+                            else if (token.getToken().Equals("++"))
+                            {
+                                pila.Pop();
+                                pila.Push("++");
+                                nod.agregarHijo("++");
+                                IDE.nodos.Add(nod);
+                            }
+                            else if (token.getToken().Equals("--"))
+                            {
+                                pila.Pop();
+                                pila.Push("--");
+                                nod.agregarHijo("--");
+                                IDE.nodos.Add(nod);
+                            }
+                            else
+                            {
+                                pila.Pop();
+                                return false;
+                            }
                         }
                         break;
                     case "Q'":
-                        if (token.getToken().Equals("+") || token.getToken().Equals("-") || token.getToken().Equals("*"))
                         {
-                            pila.Pop();
-                            pila.Push("Q''");
-                            pila.Push(token.getToken());
-                        }
-                        else if (token.getToken().Equals(")"))
-                        {
-                            pila.Pop();
-                        }
-                        else if (token.getToken().Equals(";"))
-                        {
-                            pila.Pop();
-                        }
-                        else
-                        {
-                            return false;
+                            Nodo nod = new Nodo(peek);
+                            if (token.getToken().Equals("+") || token.getToken().Equals("-") || token.getToken().Equals("*"))
+                            {
+                                pila.Pop();
+                                pila.Push("Q''");
+                                nod.agregarHijo("Q''");
+                                pila.Push(token.getToken());
+                                nod.agregarHijo(token.getToken());
+                                IDE.nodos.Add(nod);
+                            }
+                            else if (token.getToken().Equals(")"))
+                            {
+                                pila.Pop();
+                            }
+                            else if (token.getToken().Equals(";"))
+                            {
+                                pila.Pop();
+                            }
+                            else
+                            {
+                                return false;
+                            }
                         }
                         break;
                     case "Q''":
-                        if (token.getTipo().Equals("ID") || token.getTipo().Equals("Entero"))
                         {
-                            pila.Pop();
-                            pila.Push("Q'");
-                            pila.Push(token.getTipo());
-                        }
-                        else if (token.getToken().Equals("("))
-                        {
-                            pila.Pop();
-                            pila.Push("Q'");
-                            pila.Push(")");
-                            pila.Push("Q''");
-                            pila.Push("(");
-                        }
-                        else
-                        {
-                            return false;
+                            Nodo nod = new Nodo(peek);
+                            if (token.getTipo().Equals("ID") || token.getTipo().Equals("Entero"))
+                            {
+                                pila.Pop();
+                                pila.Push("Q'");
+                                nod.agregarHijo("Q'");
+                                pila.Push(token.getTipo());
+                                nod.agregarHijo(token.getTipo());
+                                IDE.nodos.Add(nod);
+                            }
+                            else if (token.getToken().Equals("("))
+                            {
+                                pila.Pop();
+                                pila.Push("Q'");
+                                nod.agregarHijo("Q'");
+                                pila.Push(")");
+                                nod.agregarHijo(")");
+                                pila.Push("Q''");
+                                nod.agregarHijo("Q''");
+                                pila.Push("(");
+                                nod.agregarHijo("(");
+                                IDE.nodos.Add(nod);
+                            }
+                            else
+                            {
+                                return false;
+                            }
                         }
                         break;
                     case "O'":
-                        if (token.getToken().Equals("+"))
                         {
-                            pila.Pop();
-                            pila.Push("N'");
-                            pila.Push("+");
-                        }
-                        else if (token.getToken().Equals(";"))
-                        {
-                            pila.Pop();
-                        }
-                        else
-                        {
-                            return false;
+                            Nodo nod = new Nodo(peek);
+                            if (token.getToken().Equals("+"))
+                            {
+                                pila.Pop();
+                                pila.Push("N'");
+                                nod.agregarHijo("N'");
+                                pila.Push("+");
+                                nod.agregarHijo("+");
+                                IDE.nodos.Add(nod);
+                            }
+                            else if (token.getToken().Equals(";"))
+                            {
+                                pila.Pop();
+                            }
+                            else
+                            {
+                                return false;
+                            }
                         }
                         break;
                     case "N'":
-                        if (token.getTipo().Equals("ID") || token.getTipo().Equals("Cadena"))
                         {
-                            pila.Pop();
-                            pila.Push("O'");
-                            pila.Push(token.getTipo());
-                        }
-                        else if (token.getToken().Equals(";"))
-                        {
-                            pila.Pop();
-                        }
-                        else
-                        {
-                            return false;
+                            Nodo nod = new Nodo(peek);
+                            if (token.getTipo().Equals("ID") || token.getTipo().Equals("Cadena"))
+                            {
+                                pila.Pop();
+                                pila.Push("O'");
+                                nod.agregarHijo("O'");
+                                pila.Push(token.getTipo());
+                                nod.agregarHijo(token.getTipo());
+                                IDE.nodos.Add(nod);
+                            }
+                            else if (token.getToken().Equals(";"))
+                            {
+                                pila.Pop();
+                            }
+                            else
+                            {
+                                return false;
+                            }
                         }
                         break;
                     default:
@@ -819,7 +1162,9 @@ namespace Proyecto_1
                 }
 
             }
+           
             return true;
         }
+
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,8 @@ namespace Proyecto_1
         Archivos archivo = new Archivos();
         GeneradorTokens tokensclase = new GeneradorTokens();
         private ArrayList listaVariables= new ArrayList();
+        public static ArrayList nodos = new ArrayList();
+        private int contador = 0;
         public IDE()
         {
             InitializeComponent();
@@ -96,12 +99,14 @@ namespace Proyecto_1
         /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
+            nodos.Clear();
             tokensclase = new GeneradorTokens();
             tokensclase.vaciarLista();
             tokensclase.separarTokens(richTextBox1);
             ArrayList listatokens = tokensclase.getTokens();
             richTextBox1.Clear();
             richTextBox2.Clear();
+            contador = 0;
             for (int i = 0; i < listatokens.Count; i++)
             {
                 Token tokenizer = (Token)listatokens[i];
@@ -163,7 +168,8 @@ namespace Proyecto_1
                         richTextBox1.AppendText(tokenizer.getToken());
                         richTextBox1.AppendText(" ");
                         break;
-                    case "Error":                        
+                    case "Error":
+                        contador++;
                         richTextBox1.SelectionColor = Color.Yellow;
                         richTextBox1.AppendText(tokenizer.getToken());
                         richTextBox1.AppendText(" ");
@@ -216,6 +222,9 @@ namespace Proyecto_1
             label3.Text = Convert.ToString("Linea: "+(line+1));
             label4.Text = Convert.ToString("Columna: " + column);
             richTextBox1.SelectionColor = Color.White;
+
+
+           
         }
 
         /// <summary>
@@ -288,6 +297,29 @@ namespace Proyecto_1
             label5.Text ="";
             richTextBox1.Text = "";
             richTextBox2.Text = "";
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            
+            
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (contador == 0)
+            {
+                Parserer pa = new Parserer();
+                Graphviz g = new Graphviz();
+                g.crearGrafo(nodos, @"..\arbol.jpeg");
+                Arbol a = new Arbol();
+                a.Show();
+                
+            }
+            else
+            {
+                MessageBox.Show("Tiene errores en su codigo para generar el arbol");
+            }
         }
        
     }
