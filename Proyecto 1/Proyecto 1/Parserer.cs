@@ -1181,9 +1181,10 @@ namespace Proyecto_1
                             {
                                 contadorllave++;
                             }
+                            pila.Pop();
                                 return false;
-                            
 
+                                
                         }
                 }
 

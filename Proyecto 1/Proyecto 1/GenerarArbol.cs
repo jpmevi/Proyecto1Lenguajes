@@ -99,21 +99,24 @@ namespace Proyecto_1
 
         public void crearGrafo(string codigoDot, string path)
         {
-            //Crear carpeta
-            string inicio = "digraph G{";
-            string contenido1 = "{\n" +
-              "node[shape=box, width=2];\n";
-            string contenido2 = codigoDot;
-            String final = "}\n" +
-                "}";
-            string contenidoGraph = inicio + contenido1 + contenido2 + final;
-            Bitmap bm = new Bitmap(Graphviz.RenderImage(contenidoGraph, "jpeg"));
-            var imagen = new Bitmap(bm);
-            bm.Dispose();
-            Image image = (Image)imagen;
-            imagen.Save(path, ImageFormat.Jpeg);
-            imagen.Dispose();
-
+            try
+            {
+                //Crear carpeta
+                string inicio = "digraph G{";
+                string contenido1 = "{\n" +
+                  "node[shape=box, width=2];\n";
+                string contenido2 = codigoDot;
+                String final = "}\n" +
+                    "}";
+                string contenidoGraph = inicio + contenido1 + contenido2 + final;
+                Bitmap bm = new Bitmap(Graphviz.RenderImage(contenidoGraph, "jpeg"));
+                var imagen = new Bitmap(bm);
+                bm.Dispose();
+                Image image = (Image)imagen;
+                imagen.Save(path, ImageFormat.Jpeg);
+                imagen.Dispose();
+            }catch(Exception){
+            }
 
 
         }
