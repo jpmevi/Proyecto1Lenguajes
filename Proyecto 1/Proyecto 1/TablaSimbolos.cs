@@ -12,7 +12,6 @@ namespace Proyecto_1
         private string palabra;
         private string id;
         private string valor;
-        private ArrayList lista;
 
         public TablaSimbolos(string palabra, string id, string valor)
         {

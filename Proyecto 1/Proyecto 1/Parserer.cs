@@ -12,6 +12,7 @@ namespace Proyecto_1
         private Stack pila = new Stack();
         private string[] valores = new string[3];
         private int contadorllave;
+        private int contadorV;
 
         public Parserer()
         {
@@ -690,11 +691,13 @@ namespace Proyecto_1
                             {
                                 pila.Pop();
                                 pila.Push("V'");
-                                nod.agregarHijo("V'");
+                                nod.agregarHijo("V'.1");
                                 pila.Push("X");
                                 nod.agregarHijo("X");
                                 pila.Push("V'");
-                                nod.agregarHijo("V'");
+                                nod.agregarHijo("V'.2");
+                                
+                               
                                 IDE.nodos.Add(nod);
                             }
                             else if (token.getToken().Equals("("))
@@ -705,11 +708,11 @@ namespace Proyecto_1
                                 pila.Push(")");
                                 nod.agregarHijo(")");
                                 pila.Push("V'");
-                                nod.agregarHijo("V'");
+                                nod.agregarHijo("V'.1");
                                 pila.Push("X");
                                 nod.agregarHijo("X");
                                 pila.Push("V'");
-                                nod.agregarHijo("V'");
+                                nod.agregarHijo("V'.2");
                                 pila.Push("(");
                                 nod.agregarHijo("(");
                                 IDE.nodos.Add(nod);
@@ -722,18 +725,40 @@ namespace Proyecto_1
                         break;
                     case "V'":
                         {
-                            Nodo nod = new Nodo(peek);
-                            if (token.getTipo().Equals("ID") || token.getTipo().Equals("Entero") || token.getTipo().Equals("Decimal") || token.getTipo().Equals("Cadena") || token.getTipo().Equals("Booleano"))
+                            if (contadorV == 0)
                             {
-                                pila.Pop();
-                                pila.Push(token.getTipo());
-                                nod.agregarHijo(token.getTipo());
-                                IDE.nodos.Add(nod);
+                                Nodo nod = new Nodo("V'.1");
+                                contadorV++;
+                                if (token.getTipo().Equals("ID") || token.getTipo().Equals("Entero") || token.getTipo().Equals("Decimal") || token.getTipo().Equals("Cadena") || token.getTipo().Equals("Booleano"))
+                                {
+                                    pila.Pop();
+                                    pila.Push(token.getTipo());
+                                    nod.agregarHijo(token.getTipo());
+                                    IDE.nodos.Add(nod);
+                                }
+                                else
+                                {
+                                    return false;
+                                }
                             }
                             else
                             {
-                                return false;
+                                Nodo nod = new Nodo("V'.2");
+                                contadorV = 0;
+                                if (token.getTipo().Equals("ID") || token.getTipo().Equals("Entero") || token.getTipo().Equals("Decimal") || token.getTipo().Equals("Cadena") || token.getTipo().Equals("Booleano"))
+                                {
+                                    pila.Pop();
+                                    pila.Push(token.getTipo());
+                                    nod.agregarHijo(token.getTipo());
+                                    IDE.nodos.Add(nod);
+                                }
+                                else
+                                {
+                                    return false;
+                                }
                             }
+                          
+                           
                         }
                         break;
                     case "X":

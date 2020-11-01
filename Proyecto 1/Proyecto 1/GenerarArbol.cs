@@ -109,10 +109,6 @@ namespace Proyecto_1
             string contenidoGraph = inicio + contenido1 + contenido2 + final;
             Bitmap bm = new Bitmap(Graphviz.RenderImage(contenidoGraph, "jpeg"));
             var imagen = new Bitmap(bm);
-            using (var m = new MemoryStream())
-            {
-                imagen = new Bitmap(bm);
-            }
             bm.Dispose();
             Image image = (Image)imagen;
             imagen.Save(path, ImageFormat.Jpeg);
